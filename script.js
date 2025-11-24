@@ -4,36 +4,53 @@
 
 // Alle Theme-Buttons sammeln
 const themeButtons = document.querySelectorAll("[data-theme-btn]");
-// Body-Element (hier wird data-theme gesetzt)
+// Body- und HTML-Element (hier wird data-theme gesetzt)
 const body = document.body;
+const htmlElement = document.documentElement;
+
+// verfügbare Themes aus den Buttons ableiten
+const availableThemes = new Set(
+  Array.from(themeButtons, (btn) => btn.dataset.themeBtn)
+);
+
+// Standard-Theme
+const DEFAULT_THEME = "dark";
+
+/**
+ * wendet ein Theme an, wenn es vorhanden ist,
+ * sonst fällt es auf DEFAULT_THEME zurück
+ */
+function applyTheme(theme) {
+  if (!availableThemes.has(theme)) {
+    theme = DEFAULT_THEME;
+  }
+
+  body.setAttribute("data-theme", theme);
+  htmlElement.setAttribute("data-theme", theme);
+  localStorage.setItem("portfolio-theme", theme);
+
+  // aktiven Button visuell aktualisieren + ARIA
+  themeButtons.forEach((btn) => {
+    const isActive = btn.dataset.themeBtn === theme;
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-pressed", String(isActive));
+  });
+}
 
 // gespeichertes Theme (localStorage) beim Laden auslesen
 const savedTheme = localStorage.getItem("portfolio-theme");
-if (savedTheme) {
-  body.setAttribute("data-theme", savedTheme);
-  document.documentElement.setAttribute("data-theme", savedTheme);
-
-  // aktiven Button visuell aktualisieren
-  themeButtons.forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.themeBtn === savedTheme);
-  });
+if (savedTheme && availableThemes.has(savedTheme)) {
+  applyTheme(savedTheme);
+} else {
+  // Fallback, falls z.B. früher "contrast-light" gespeichert war
+  applyTheme(DEFAULT_THEME);
 }
 
 // Klick-Handler für Theme-Buttons
 themeButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     const theme = btn.dataset.themeBtn;
-
-    // data-theme auf <body> und <html> setzen
-    body.setAttribute("data-theme", theme);
-    document.documentElement.setAttribute("data-theme", theme);
-
-    // Auswahl speichern (damit das Theme beim nächsten Laden bleibt)
-    localStorage.setItem("portfolio-theme", theme);
-
-    // aktiven Button markieren
-    themeButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
+    applyTheme(theme);
   });
 });
 
@@ -90,3 +107,60 @@ tabJumpButtons.forEach((btn) => {
     }
   });
 });
+
+// ================================
+// Leichte, richtungsabhängige Bewegung
+// für Karten & Buttons bei Mausbewegung
+// (um ~40 % reduziert / sehr subtil)
+// ================================
+
+const prefersReducedMotion =
+  window.matchMedia &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Elemente, die sich minimal bewegen sollen
+const tiltTargets = document.querySelectorAll(
+  ".glass-card, .btn, .tab-button, .theme-btn, .hero-photo-wrap, .avatar, .glass-pill"
+);
+
+if (!prefersReducedMotion && tiltTargets.length > 0) {
+  tiltTargets.forEach((el) => {
+    let rect = null;
+    const maxOffset = 6; // Basis-Verschiebung in px
+    const reductionFactor = 0.6; // 40 % weniger Bewegung
+
+    // vorhandene Transition erweitern
+    const existingTransition = getComputedStyle(el).transition;
+    el.style.transition =
+      (existingTransition ? existingTransition + ", " : "") +
+      "transform 0.12s ease";
+
+    el.addEventListener("pointerenter", () => {
+      rect = el.getBoundingClientRect();
+    });
+
+    el.addEventListener("pointermove", (event) => {
+      if (!rect) return;
+
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      // Werte von -1 bis 1 relativ zur Mitte
+      const relativeX = (x / rect.width - 0.5) * 2;
+      const relativeY = (y / rect.height - 0.5) * 2;
+
+      // Bewegung gegenläufig zur Mausposition
+      const offsetX = -relativeX * maxOffset * reductionFactor;
+      const offsetY = -relativeY * maxOffset * reductionFactor;
+
+      el.style.transform = `translate(${offsetX.toFixed(
+        2
+      )}px, ${offsetY.toFixed(2)}px)`;
+    });
+
+    el.addEventListener("pointerleave", () => {
+      rect = null;
+      el.style.transform = "translate(0px, 0px)";
+    });
+  });
+}
