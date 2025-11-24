@@ -17,7 +17,7 @@ body {
 }
 
 :root {
-  --bg-image: url("waves.png");
+  --bg-image: url("asset/Bilder/waves.png");
 }
 
 /* Seite mit Hintergrundbild (vom User bereitgestellt) */
@@ -255,8 +255,9 @@ body::before {
 }
 
 .avatar {
-  width: 180px;
-  height: 180px;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
   border-radius: 999px;
   background: radial-gradient(circle at 20% 20%, #e0f2fe, #2563eb);
   display: flex;
