@@ -1,0 +1,20 @@
+# Node / Build-Tools (falls du später mal npm, Vite o.Ä. nutzt)
+node_modules/
+dist/
+build/
+.cache/
+
+# Logs
+*.log
+
+# Betriebssystem-Kram
+.DS_Store
+Thumbs.db
+
+# IDEs / Editoren
+.vscode/
+.idea/
+*.iml
+
+# Temporäre Dateien
+*.tmp
