@@ -23,93 +23,102 @@ body {
 
 /* Seite mit Hintergrundbild (vom User bereitgestellt) */
 body {
-  /* Standardfarben (werden von Themes überschrieben) */
   color: #e5e7eb;
   background-color: #020617;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Hintergrundbild + Abdunkelung / Aufhellung – GLOBAL */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-
-  /* Globales Bild + Overlay (Standard: Dark) */
-  background-image:
-    linear-gradient(to bottom right, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.8)),
+  background-image: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 55%),
+    radial-gradient(circle at bottom, rgba(56, 189, 248, 0.1), transparent 55%),
     var(--bg-image);
-  background-size: cover;
+  background-size: cover, cover, cover;
+  background-attachment: fixed;
   background-position: center;
-  background-repeat: no-repeat;
 }
 
-/* Haupt-Container für Inhalt */
+/* Hauptseite */
 .page {
+  min-height: 100vh;
+  padding: 5.5rem 1.25rem 3rem 1.25rem;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 3.5rem;
 }
 
 /* =========================================
-   Fokus / Accessibility
+   HEADER & NAVIGATION
    ========================================= */
 
-:focus-visible {
-  outline: 3px solid #facc15;
-  outline-offset: 3px;
-}
-
-/* =========================================
-   Header & Navigation
-   ========================================= */
-
+/* Fixierter Header mit leichtem Blur */
 .header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   backdrop-filter: blur(18px);
-  background: rgba(15, 23, 42, 0.88);
-  border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+  background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.98));
+  border-bottom: 1px solid rgba(148, 163, 184, 0.5);
 }
 
+/* Nav-Leiste innerhalb des Headers */
 .nav {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
+/* Logo-Bereich: minimalistisches "MR" + Text */
 .nav-logo {
-  font-size: 1rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e5e7eb;
+}
+
+.nav-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #22c55e, #0284c7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #020617;
+  font-size: 0.9rem;
+}
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-logo-main {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.nav-logo-sub {
+  font-size: 0.78rem;
   color: #9ca3af;
 }
 
-/* Theme-Switch Block */
+/* Theme-Schalter rechts im Header */
 .theme-switch {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
 
 .theme-label {
-  font-size: 0.88rem;
-  color: #9ca3af;
+  font-size: 0.85rem;
+  color: #cbd5f5;
 }
 
 .theme-buttons {
-  display: flex;
+  display: inline-flex;
   gap: 0.4rem;
 }
 
-/* Theme-Buttons (Dark, Light, Kontrast) */
 .theme-btn {
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
@@ -121,19 +130,12 @@ body::before {
   font-weight: 500;
   letter-spacing: 0.04em;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .theme-btn:hover {
   border-color: #38bdf8;
   box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.5);
-}
-
-.theme-btn.active {
-  background: linear-gradient(135deg, #38bdf8, #22c55e);
-  color: #020617;
-  border-color: transparent;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.7);
 }
 
 /* =========================================
@@ -142,64 +144,67 @@ body::before {
 
 /* Große Karten (Glasscards) – Standard für Dark */
 .glass-card {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  border-radius: 16px;
-  padding: 1.6rem 1.7rem;
-  backdrop-filter: blur(24px);
-  box-shadow: 0 18px 40px rgba(255, 255, 255, 0.08); /* Weißer Schatten im Dark Theme */
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 1.4rem 1.6rem;
+  background: linear-gradient(
+      to bottom right,
+      rgba(15, 23, 42, 0.85),
+      rgba(30, 64, 175, 0.9)
+    );
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(22px);
 }
 
-/* Kleine pillenförmige Glasscard */
+/* Kleine Pills aus Glas */
 .glass-pill {
   display: inline-flex;
   align-items: center;
-  padding: 0.4rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.5);
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(18px);
-  font-size: 0.9rem;
+  padding: 0.3rem 0.9rem;
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), rgba(15, 23, 42, 0.92));
+  border: 1px solid rgba(148, 163, 184, 0.75);
   color: #e5e7eb;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem; /* mehr Abstand zur Überschrift */
 }
 
-.hero-pill {
-  margin-bottom: 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  font-size: 0.85rem;
-  color: #9ca3af;
+/* Überschrift in Karten */
+.glass-card-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
 }
 
 /* =========================================
-   Buttons allgemein
+   Buttons
    ========================================= */
 
 .btn {
-  position: relative;
+  border-radius: 999px;
+  padding: 0.6rem 1.3rem;
+  border: 1px solid transparent;
+  font-size: 0.94rem;
+  font-weight: 500;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.4rem;
-  padding: 0.7rem 1.5rem;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease,
-    background 0.12s ease, border-color 0.12s ease;
-  font-weight: 500;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .btn-primary {
   background: linear-gradient(135deg, #38bdf8, #22c55e);
   color: #020617;
-  box-shadow: 0 10px 26px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 14px 35px rgba(56, 189, 248, 0.55);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(56, 189, 248, 0.75);
 }
 
 .btn-ghost {
@@ -208,22 +213,23 @@ body::before {
   border-color: rgba(148, 163, 184, 0.7);
 }
 
-.btn:hover {
-  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.45);
+.btn-ghost:hover {
+  background: rgba(15, 23, 42, 0.85);
+  border-color: rgba(248, 250, 252, 0.8);
 }
 
 /* =========================================
-   Hero-Bereich
+   HERO-SECTION
    ========================================= */
 
 .hero-section {
-  padding: 3rem 0 2rem;
+  margin-top: 1.8rem;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 2.5rem;
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+  gap: 1.8rem;
   align-items: center;
 }
 
@@ -252,7 +258,7 @@ body::before {
 
 .hero-meta {
   font-size: 0.9rem;
-  color: #9ca3af;
+  color: #e5e7eb; /* etwas heller als vorher */
 }
 
 .hero-photo-wrap {
@@ -274,57 +280,60 @@ body::before {
   box-shadow: 0 16px 40px rgba(255, 255, 255, 0.18); /* weißlicher Schatten im Dark Theme */
 }
 
+/* Name-Pill unter dem Avatar */
+.hero-name {
+  font-size: 0.78rem;
+}
+
 /* =========================================
-   Tabs
+   SECTIONS / TABS
    ========================================= */
 
 .sections {
-  padding: 2rem 0 3rem;
+  margin-top: 2.8rem;
 }
 
+/* Kopfbereich (Überschrift + Tabs) */
 .section-intro {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.4rem;
+  gap: 0.9rem;
+  margin-bottom: 1.2rem;
 }
 
+/* Überschrift-Pill für „Inhalte“ */
 .section-heading {
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+  font-size: 0.78rem;
 }
 
+/* Tab-Buttons */
 .section-tabs {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
 .tab-button {
-  padding: 0.6rem 1.2rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  border: 1px solid transparent;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   background: rgba(15, 23, 42, 0.85);
-  color: #e5e7eb;
-  font-size: 0.9rem;
+  color: #cbd5f5;
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
-    box-shadow 0.15s ease;
-}
-
-.tab-button.active {
-  background: linear-gradient(135deg, #38bdf8, #22c55e);
-  color: #020617;
-  border-color: transparent;
-  box-shadow: 0 10px 24px rgba(56, 189, 248, 0.35);
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 
 .tab-button:hover {
-  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.98);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.75);
 }
 
-/* Panels */
+/* Tab-Panels */
 .tab-panels {
   margin-top: 1rem;
 }
@@ -353,118 +362,125 @@ body::before {
 }
 
 .about-card p {
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   color: #e5e7eb;
   margin-bottom: 0.7rem;
 }
 
+/* Tags */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
 }
 
 .tag {
-  font-size: 0.82rem;
-  padding: 0.2rem 0.6rem;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  color: #cbd5f5;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* Kurzprofil */
+.profile-card {
+  font-size: 0.92rem;
 }
 
 .profile-list {
   list-style: none;
-  font-size: 0.92rem;
-  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
 }
 
-.profile-list li {
-  margin-bottom: 0.45rem;
+.profile-label {
+  display: inline-block;
+  min-width: 6rem;
+  font-weight: 600;
+  color: #e5e7eb;
 }
 
 /* =========================================
    SKILLS
    ========================================= */
 
-.skills-grid {
+.skills-layout {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.4rem;
-  margin-top: 0.6rem;
 }
 
 .skill-card {
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .skill-item {
   display: flex;
   justify-content: space-between;
-  gap: 0.8rem;
-  margin-bottom: 0.4rem;
-  color: #e5e7eb;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.5);
+}
+
+.skill-item:last-child {
+  border-bottom: none;
 }
 
 .skill-level {
-  font-size: 0.82rem;
-  color: #38bdf8;
+  font-size: 0.78rem;
+  color: #9ca3af;
 }
 
 /* =========================================
-   PROJEKTE
+   PROJECTS
    ========================================= */
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-  margin-top: 0.6rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
 }
 
 .project-thumb {
-  margin-bottom: 0.6rem;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: #cbd5f5;
+  margin-bottom: 0.4rem;
+  opacity: 0.9;
 }
 
 .project-meta {
-  font-size: 0.86rem;
+  font-size: 0.85rem;
   color: #9ca3af;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .badge-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.55rem;
 }
 
 .badge {
-  font-size: 0.8rem;
-  padding: 0.2rem 0.55rem;
+  font-size: 0.76rem;
+  padding: 0.18rem 0.6rem;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.7);
-  color: #e5e7eb;
+  background: rgba(15, 23, 42, 0.9);
 }
 
 .project-text {
   font-size: 0.9rem;
   color: #e5e7eb;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+.project-links span {
   font-size: 0.86rem;
-}
-
-.project-links a {
   color: #38bdf8;
-  text-decoration: none;
 }
 
 /* =========================================
@@ -473,69 +489,78 @@ body::before {
 
 .timeline-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
   gap: 1.6rem;
-  margin-top: 0.6rem;
 }
 
 .timeline {
+  list-style: none;
   position: relative;
-  padding-left: 1.6rem;
+  padding-left: 1.4rem;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 0.6rem;
-  top: 0.2rem;
-  bottom: 0.2rem;
+  left: 0.45rem;
+  top: 0;
+  bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, #38bdf8, transparent);
+  background: linear-gradient(to bottom, #38bdf8, #22c55e);
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.6rem; /* etwas mehr Abstand */
 }
 
 .timeline-dot {
   position: absolute;
-  left: -0.15rem;
-  top: 0.25rem;
-  width: 12px;
-  height: 12px;
+  left: -0.07rem;
+  top: 0.15rem;
+  width: 0.8rem;
+  height: 0.8rem;
   border-radius: 999px;
   background: #38bdf8;
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
 }
 
-.timeline-date {
-  font-size: 0.8rem;
-  color: #9ca3af;
+.timeline-content {
+  margin-left: 1.2rem; /* mehr Abstand zum Text */
+}
+
+.timeline-year {
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin-bottom: 0.15rem;
 }
 
-.timeline-title {
-  font-size: 0.96rem;
-  font-weight: 600;
-  margin-top: 0.1rem;
-}
-
-.timeline-body {
+.timeline-text {
   font-size: 0.9rem;
-  color: #e5e7eb;
+}
+
+/* CV-Karte */
+.cv-card {
+  font-size: 0.9rem;
 }
 
 .cv-card ul {
   list-style: none;
-  font-size: 0.9rem;
-  color: #e5e7eb;
-  margin-top: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
 
-.cv-card li {
-  margin-bottom: 0.35rem;
+.cv-card ul li {
+  margin-bottom: 0.8rem;
+  line-height: 1.45;
+}
+
+.cv-card strong {
+  display: inline-block;
+  margin-bottom: 0.15rem;
 }
 
 .cv-hint {
@@ -561,6 +586,19 @@ body::before {
   margin-bottom: 0.4rem;
 }
 
+.contact-card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.contact-card-list li strong {
+  display: inline-block;
+  margin-bottom: 0.1rem;
+}
+
 .contact-form label {
   display: block;
   font-size: 0.86rem;
@@ -570,18 +608,29 @@ body::before {
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 0.6rem 0.7rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(148, 163, 184, 0.8);
-  background: rgba(2, 6, 23, 0.85);
+  border-radius: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.93);
+  padding: 0.55rem 0.75rem;
   color: #e5e7eb;
   font-size: 0.9rem;
   margin-bottom: 0.7rem;
 }
 
 .contact-form textarea {
+  min-height: 130px;
   resize: vertical;
-  min-height: 120px;
+}
+
+.contact-form .btn-primary {
+  margin-top: 0.2rem;
+}
+
+/* kleine Hinweiszeile im Formular */
+.form-note {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin-bottom: 0.6rem;
 }
 
 /* =========================================
@@ -589,9 +638,10 @@ body::before {
    ========================================= */
 
 .footer {
-  text-align: center;
-  padding: 1.6rem 1.5rem 2.4rem;
-  font-size: 0.82rem;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem 2rem 1.25rem;
+  font-size: 0.8rem;
   color: #9ca3af;
 }
 
@@ -611,58 +661,35 @@ body::before {
     order: -1;
     margin-bottom: 1rem;
   }
+
+  .sections {
+    padding-inline: 1.25rem;
+  }
+
+  .tab-panels {
+    gap: 1.4rem;
+  }
+
+  .glass-card {
+    padding: 1.2rem 1.25rem;
+  }
+
+  .about-card p,
+  .project-text {
+    margin-bottom: 0.9rem;
+  }
 }
 
 /* =========================================
    THEME-SPEZIFISCHE ANPASSUNGEN
    ========================================= */
 
-/* ---------- DARK (Standard) ---------- */
-
-body[data-theme="dark"] {
-  color: #e5e7eb;
-  background-color: #020617;
-}
-
-body[data-theme="dark"]::before {
-  background-image:
-    linear-gradient(to bottom right, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.8)),
-    var(--bg-image);
-}
-
-body[data-theme="dark"] .header {
-  background: rgba(15, 23, 42, 0.9);
-  border-bottom-color: rgba(148, 163, 184, 0.7);
-}
-
-body[data-theme="dark"] .nav-logo {
-  color: #e5e7eb;
-}
-
-body[data-theme="dark"] .theme-label {
-  color: #9ca3af;
-}
-
-body[data-theme="dark"] .theme-btn {
-  background: rgba(15, 23, 42, 0.9);
-  color: #f9fafb;
-  border-color: rgba(148, 163, 184, 0.9);
-}
-
-body[data-theme="dark"] .avatar {
-  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.18);
-}
-
-/* ---------- LIGHT ---------- */
-
+/* ---------- LIGHT THEME ---------- */
 body[data-theme="light"] {
-  color: #020617;
-  background-color: #e5e7eb;
-}
-
-body[data-theme="light"]::before {
-  background-image:
-    linear-gradient(to bottom right, rgba(255, 255, 255, 0.75), rgba(226, 232, 240, 0.9)),
+  color: #1f2937;
+  background-color: #f3f4f6;
+  background-image: radial-gradient(circle at top, rgba(59, 130, 246, 0.16), transparent 55%),
+    radial-gradient(circle at bottom, rgba(59, 130, 246, 0.12), transparent 55%),
     var(--bg-image);
 }
 
@@ -676,139 +703,129 @@ body[data-theme="light"] .nav-logo {
   color: #475569;
 }
 
+body[data-theme="light"] .nav-logo-sub {
+  color: #4b5563;
+}
+
 body[data-theme="light"] .theme-label {
-  color: #475569;
-}
-
-body[data-theme="light"] .theme-btn {
-  background: rgba(255, 255, 255, 0.9);
-  color: #0f172a;
-  border-color: rgba(148, 163, 184, 0.9);
-}
-
-body[data-theme="light"] .theme-btn:hover {
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.6);
+  color: #1f2937;
 }
 
 body[data-theme="light"] .glass-card {
-  background: rgba(255, 255, 255, 0.8); /* deutlich transparenter Glass-Effekt */
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
-  color: #0f172a;
+  background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.85),
+      rgba(241, 245, 249, 0.95)
+    );
+  border-color: rgba(148, 163, 184, 0.8);
+  box-shadow: 0 18px 48px rgba(148, 163, 184, 0.5);
 }
 
-body[data-theme="light"] .glass-pill,
-body[data-theme="light"] .hero-pill {
-  background: rgba(255, 255, 255, 0.9);
-  color: #1e293b;
-  border-color: rgba(148, 163, 184, 0.7);
+body[data-theme="light"] .glass-pill {
+  background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), rgba(255, 255, 255, 0.96));
+  border-color: rgba(148, 163, 184, 0.8);
+  color: #1f2937;
+}
+
+body[data-theme="light"] .hero-sub,
+body[data-theme="light"] .about-card p,
+body[data-theme="light"] .project-text,
+body[data-theme="light"] .contact-info p {
+  color: #1f2937;
+}
+
+body[data-theme="light"] .hero-meta,
+body[data-theme="light"] .profile-label,
+body[data-theme="light"] .cv-hint {
+  color: #4b5563;
+}
+
+body[data-theme="light"] .tag,
+body[data-theme="light"] .badge {
+  background: #e5e7eb;
+  border-color: rgba(148, 163, 184, 0.9);
+  color: #111827;
 }
 
 body[data-theme="light"] .tab-button {
-  background: rgba(255, 255, 255, 0.9);
-  color: #0f172a;
-  border-color: rgba(148, 163, 184, 0.9);
+  background: rgba(255, 255, 255, 0.95);
+  color: #1f2937;
+  border-color: rgba(148, 163, 184, 0.8);
 }
 
-body[data-theme="light"] .tab-button.active {
-  background: linear-gradient(135deg, #38bdf8, #22c55e);
-  color: #020617;
-  border-color: transparent;
-}
-
-body[data-theme="light"] .about-card p,
-body[data-theme="light"] .project-text,
-body[data-theme="light"] .timeline-body,
-body[data-theme="light"] .contact-info p {
-  color: #334155;
-}
-
-body[data-theme="light"] .timeline-date {
-  color: #64748b;
-}
-
-body[data-theme="light"] .tag {
-  color: #0f172a;
-}
-
+/* Light Theme: Ghost-Button besser lesbar */
 body[data-theme="light"] .btn-ghost {
-  background: rgba(255, 255, 255, 0.8);
-  color: #0f172a;
+  color: #1f2937;
   border-color: rgba(148, 163, 184, 0.9);
+  background: transparent;
 }
 
-body[data-theme="light"] .btn-primary {
-  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.3);
+body[data-theme="light"] .btn-ghost:hover {
+  background: #e5e7eb;
+  border-color: #1f2937;
 }
 
+/* Light Theme: Überschriften & Meta im Werdegang deutlicher */
+body[data-theme="light"] .cv-card strong,
+body[data-theme="light"] .timeline-year,
+body[data-theme="light"] .project-meta,
+body[data-theme="light"] .skill-level,
+body[data-theme="light"] .profile-label {
+  color: #111827;
+  font-weight: 600;
+}
+
+/* Light Theme: Kontaktformular-Felder hell */
 body[data-theme="light"] .contact-form input,
 body[data-theme="light"] .contact-form textarea {
-  background: rgba(255, 255, 255, 0.9);
+  background: #ffffff;
   border-color: rgba(148, 163, 184, 0.9);
-  color: #0f172a;
+  color: #111827;
 }
 
-body[data-theme="light"] .footer {
-  color: #64748b;
+body[data-theme="light"] .contact-form input::placeholder,
+body[data-theme="light"] .contact-form textarea::placeholder {
+  color: #6b7280;
 }
 
+body[data-theme="light"] .contact-form label {
+  color: #111827;
+}
+
+/* Avatar-Schatten im Light-Theme etwas dezenter */
 body[data-theme="light"] .avatar {
-  border-color: #e5e7eb;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.25);
+  border-color: #ffffff;
+  box-shadow: 0 10px 26px rgba(100, 116, 139, 0.6);
 }
 
-body[data-theme="light"] a {
-  color: #1d4ed8;
-}
-
-/* ---------- KONTRAST DARK (barrierefrei) ---------- */
-
+/* ---------- KONTRAST DARK ---------- */
 body[data-theme="contrast-dark"] {
+  background-color: #02040a;
   color: #ffffff;
-  background-color: #000000;
 }
 
 body[data-theme="contrast-dark"]::before {
   background-image: none;
-  background-color: #000000;
+  background-color: #02040a;
 }
 
 body[data-theme="contrast-dark"] .header {
-  background: #000000;
+  background: #02040a;
   border-bottom: 2px solid #ffffff;
   backdrop-filter: none;
 }
 
-body[data-theme="contrast-dark"] .nav-logo,
-body[data-theme="contrast-dark"] .theme-label {
-  color: #ffffff;
-}
-
-body[data-theme="contrast-dark"] .theme-btn {
-  background: #000000;
-  color: #ffffff;
-  border-color: #ffffff;
-}
-
-body[data-theme="contrast-dark"] .theme-btn.active {
-  background: #ffffff;
-  color: #000000;
-  border-color: #ffffff;
-  box-shadow: none;
-}
-
-/* Kontrast-Theme: keine Transparenzen, kein Blur, sehr hoher Kontrast */
 body[data-theme="contrast-dark"] .glass-card,
 body[data-theme="contrast-dark"] .glass-pill,
 body[data-theme="contrast-dark"] .tab-button,
 body[data-theme="contrast-dark"] .btn,
 body[data-theme="contrast-dark"] .contact-form input,
 body[data-theme="contrast-dark"] .contact-form textarea {
-  background: #000000;
+  background: #080b14;
   color: #ffffff;
   border-color: #ffffff;
-  backdrop-filter: none;
   box-shadow: none;
+  backdrop-filter: none;
 }
 
 body[data-theme="contrast-dark"] .tab-button.active {
@@ -831,7 +848,7 @@ body[data-theme="contrast-dark"] .btn-primary {
 }
 
 body[data-theme="contrast-dark"] .btn-ghost {
-  background: #000000;
+  background: #02040a;
   color: #ffffff;
   border-color: #ffffff;
 }
@@ -846,7 +863,83 @@ body[data-theme="contrast-dark"] .avatar {
   box-shadow: none;
 }
 
-/* Fokus-Farbe im Kontrast-Theme noch kräftiger */
+/* Kontrast-Theme: alle wichtigen Texte sehr hell */
+body[data-theme="contrast-dark"] .hero-meta,
+body[data-theme="contrast-dark"] .form-note,
+body[data-theme="contrast-dark"] .contact-form label,
+body[data-theme="contrast-dark"] .cv-card strong,
+body[data-theme="contrast-dark"] .timeline-year,
+body[data-theme="contrast-dark"] .project-meta,
+body[data-theme="contrast-dark"] .skill-level,
+body[data-theme="contrast-dark"] .profile-label,
+body[data-theme="contrast-dark"] .tag,
+body[data-theme="contrast-dark"] .badge {
+  color: #ffffff;
+}
+
+/* Platzhaltertexte im Kontrast-Theme */
+body[data-theme="contrast-dark"] .contact-form input::placeholder,
+body[data-theme="contrast-dark"] .contact-form textarea::placeholder {
+  color: #f5f5f5;
+}
+
+/* Kontrast-Theme: Schrift minimal größer */
+body[data-theme="contrast-dark"] .section-heading,
+body[data-theme="contrast-dark"] .nav-logo {
+  font-weight: 700;
+}
+
+body[data-theme="contrast-dark"] .page,
+body[data-theme="contrast-dark"] .sections,
+body[data-theme="contrast-dark"] .hero-section {
+  font-size: 1.02rem;
+}
+
+/* Fokus-Farbe im Kontrast-Theme kräftig */
 body[data-theme="contrast-dark"] :focus-visible {
   outline-color: #fffb00;
+}
+
+/* =========================================
+   Klarere visuelle Hierarchie der Karten
+   ========================================= */
+.hero-main,
+.project-card {
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.6);
+}
+
+.profile-card,
+.cv-card,
+.skill-card,
+.about-card {
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.45);
+}
+
+/* =========================================
+   Sanfte aktive Buttons (Tabs / Theme / Primary)
+   ========================================= */
+
+/* Sanfter aktiver Tab */
+.tab-button.active {
+  background: linear-gradient(135deg, #5ecfe5, #34d399);
+  color: #020617;
+  box-shadow: 0 0 6px rgba(94, 207, 229, 0.35),
+              0 0 4px rgba(52, 211, 153, 0.3);
+}
+
+/* Sanfter aktiver Theme-Button */
+.theme-btn.active {
+  background: linear-gradient(135deg, #5ecfe5, #34d399);
+  color: #020617;
+  box-shadow: 0 0 6px rgba(94, 207, 229, 0.35),
+              0 0 4px rgba(52, 211, 153, 0.3);
+}
+
+/* Primary Button beim Anklicken subtil hervorheben */
+.btn-primary:active,
+.btn-primary:focus-visible {
+  background: linear-gradient(135deg, #63d8ee, #41d9a3);
+  box-shadow: 0 0 8px rgba(99, 216, 238, 0.35),
+              0 0 4px rgba(65, 217, 163, 0.3);
+  transform: translateY(-1px);
 }

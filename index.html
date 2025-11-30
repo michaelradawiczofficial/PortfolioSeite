@@ -14,10 +14,14 @@
     <nav class="nav">
       <!-- Logo / Titelbereich -->
       <div class="nav-logo">
-        Portfolio · Fachinformatiker AE
+        <span class="nav-logo-mark">MR</span>
+        <div class="nav-logo-text">
+          <span class="nav-logo-main">Portfolio</span>
+          <span class="nav-logo-sub">Fachinformatiker AE (Umschulung)</span>
+        </div>
       </div>
 
-      <!-- Theme-Auswahl (Dark, Light, Kontrast) -->
+      <!-- Rechts: Theme-Auswahl -->
       <div class="theme-switch">
         <span class="theme-label">Theme:</span>
         <div class="theme-buttons">
@@ -25,7 +29,6 @@
           <button class="theme-btn active" data-theme-btn="dark" aria-pressed="true">Dark</button>
           <button class="theme-btn" data-theme-btn="light" aria-pressed="false">Light</button>
           <button class="theme-btn" data-theme-btn="contrast-dark" aria-pressed="false">Kontrast</button>
-          <!-- Kontrast Light wurde entfernt -->
         </div>
       </div>
     </nav>
@@ -34,7 +37,7 @@
   <!-- ================= MAIN-BEREICH ================= -->
   <main class="page">
     <!-- ============== HERO / INTRO mit Glasscard + Avatar ============== -->
-    <section id="hero" class="hero-section">
+    <section id="hero" class="hero-section" aria-labelledby="hero-title" role="region">
       <div class="hero-grid">
         <!-- Linke Hero-Glas-Karte mit Inhalt -->
         <article class="glass-card hero-main">
@@ -44,13 +47,13 @@
           </div>
 
           <!-- Hauptüberschrift -->
-          <h1 class="hero-title glass-card-title">
+          <h1 id="hero-title" class="hero-title glass-card-title">
             Hi, ich bin Max – angehender Anwendungsentwickler.
           </h1>
 
           <!-- Untertitel-Text -->
           <p class="hero-sub">
-            Ich befinde mich in der Umschulung zum Fachinformatiker für Anwendungsentwicklung
+            Ich befinde mich in der Umschulung zum Fachinformatiker Anwendungsentwicklung
             und suche ein Praktikum, in dem ich aktiv an Web- und Softwareprojekten mitarbeiten
             und von erfahrenen Entwickler:innen lernen kann.
           </p>
@@ -73,7 +76,7 @@
         </article>
 
         <!-- Rechte Seite: Avatar + Name als Glasscard -->
-        <aside class="hero-photo-wrap">
+        <aside class="glass-card hero-photo-wrap">
           <!-- Kreis-Avatar mit Bild -->
           <img class="avatar" src="asset/Bilder/bew.jpg" alt="Michael Radawicz" />
 
@@ -86,30 +89,30 @@
     </section>
 
     <!-- ============== SECTIONS / TABS: Buttons + Inhalte ============== -->
-    <section id="sections" class="sections">
+    <section id="sections" class="sections" aria-labelledby="section-heading" role="region">
       <!-- Kopfbereich für die Tabs (Section-Überschriften als Buttons) -->
       <div class="section-intro">
         <!-- Titel der Sektion als Glass-Pill -->
-        <h2 class="glass-pill section-heading">
+        <h2 id="section-heading" class="glass-pill section-heading">
           Inhalte
         </h2>
 
         <!-- Horizontale Button-Leiste (Tabs) -->
-        <div class="section-tabs">
+        <div class="section-tabs" role="tablist" aria-label="Inhaltsbereiche">
           <!-- Jeder Button steht für eine „Section“ / ein Panel -->
-          <button class="tab-button active" data-tab="about">
+          <button id="tab-about-tab" class="tab-button active" data-tab="about" role="tab" aria-selected="true" aria-controls="tab-about" tabindex="0">
             Über mich
           </button>
-          <button class="tab-button" data-tab="skills">
+          <button id="tab-skills-tab" class="tab-button" data-tab="skills" role="tab" aria-selected="false" aria-controls="tab-skills" tabindex="-1">
             Skills
           </button>
-          <button class="tab-button" data-tab="projects">
+          <button id="tab-projects-tab" class="tab-button" data-tab="projects" role="tab" aria-selected="false" aria-controls="tab-projects" tabindex="-1">
             Projekte
           </button>
-          <button class="tab-button" data-tab="timeline">
+          <button id="tab-timeline-tab" class="tab-button" data-tab="timeline" role="tab" aria-selected="false" aria-controls="tab-timeline" tabindex="-1">
             Lebenslauf
           </button>
-          <button class="tab-button" data-tab="contact">
+          <button id="tab-contact-tab" class="tab-button" data-tab="contact" role="tab" aria-selected="false" aria-controls="tab-contact" tabindex="-1">
             Kontakt
           </button>
         </div>
@@ -118,7 +121,7 @@
       <!-- ========== TAB-INHALTE ========== -->
       <div class="tab-panels">
         <!-- ===== TAB: ÜBER MICH ===== -->
-        <div class="tab-panel active" id="tab-about">
+        <div class="tab-panel active" id="tab-about" role="tabpanel" aria-labelledby="tab-about-tab" tabindex="0">
           <div class="about-layout">
             <!-- Haupt-„Über mich“-Text -->
             <article class="glass-card about-card">
@@ -133,11 +136,13 @@
                 Nach ersten eigenen Schritten mit Online-Kursen und kleineren Webprojekten habe
                 ich mich bewusst für die Umschulung zum Fachinformatiker Anwendungsentwicklung
                 entschieden. Mir macht es Spaß, Probleme strukturiert anzugehen und Lösungen
-                in Form von sauberem, verständlichem Code umzusetzen.
+                so zu bauen, dass sie für andere gut nachvollziehbar sind.
               </p>
               <p>
-                Ich lerne schnell, stelle Fragen, wenn etwas unklar ist, und freue mich darauf,
-                im Praktikum praktische Erfahrung in einem Entwicklungsteam zu sammeln.
+                Aktuell arbeite ich vor allem mit HTML, CSS und JavaScript, lerne Java und
+                übe den Umgang mit Git/GitHub in kleinen Projekten. Für mein Praktikum ist
+                mir wichtig, dass ich sowohl mitarbeiten als auch dazulernen kann – ideal in
+                einem Umfeld, in dem Fragen stellen ausdrücklich erwünscht ist.
               </p>
 
               <!-- Tags mit Eigenschaften -->
@@ -149,28 +154,39 @@
               </div>
             </article>
 
-            <!-- Kurzprofil-Box (Variante 2) -->
+            <!-- Kurzprofil-Box -->
             <aside class="glass-card profile-card">
               <h3 class="panel-title">Kurzprofil</h3>
               <ul class="profile-list">
-                <li><strong>Status:</strong> Umschulung zum Fachinformatiker AE</li>
-                <li><strong>Schwerpunkt:</strong> Webentwicklung (Frontend), Java &amp; OOP-Grundlagen</li>
-                <li><strong>Tools:</strong> Git, GitHub, VS Code, einfache Boards / Ticketsysteme</li>
-                <li><strong>Gesuchtes Praktikum:</strong> Web- oder Anwendungsentwicklung (vor Ort / hybrid / remote)</li>
-                <li><strong>Arbeitsweise:</strong> strukturiert, offen für Feedback, kommunikativ</li>
+                <li>
+                  <span class="profile-label">Ziel:</span>
+                  <span>Praktikum als Fachinformatiker AE mit Schwerpunkt Webentwicklung</span>
+                </li>
+                <li>
+                  <span class="profile-label">Technologien:</span>
+                  <span>HTML, CSS, JavaScript, Java, Git &amp; GitHub</span>
+                </li>
+                <li>
+                  <span class="profile-label">Arbeitsweise:</span>
+                  <span>Strukturiert, zuverlässig, offen für Feedback</span>
+                </li>
+                <li>
+                  <span class="profile-label">Stärken:</span>
+                  <span>Analytisches Denken, Kommunikation, Lernmotivation</span>
+                </li>
               </ul>
             </aside>
           </div>
         </div>
 
         <!-- ===== TAB: SKILLS ===== -->
-        <div class="tab-panel" id="tab-skills">
-          <div class="skills-grid">
-            <!-- Skill-Bereich: Web -->
+        <div class="tab-panel" id="tab-skills" role="tabpanel" aria-labelledby="tab-skills-tab" tabindex="0" hidden>
+          <div class="skills-layout">
+            <!-- Skill-Bereich: Frontend -->
             <article class="glass-card skill-card">
-              <h3 class="panel-title">Webentwicklung</h3>
+              <h3 class="panel-title">Frontend</h3>
               <div class="skill-item">
-                <span>HTML5 &amp; semantische Struktur</span>
+                <span>HTML5 (Semantik, Formulare, Struktur)</span>
                 <span class="skill-level">Fortgeschritten</span>
               </div>
               <div class="skill-item">
@@ -204,65 +220,57 @@
             <article class="glass-card skill-card">
               <h3 class="panel-title">Tools &amp; Zusammenarbeit</h3>
               <div class="skill-item">
-                <span>Git &amp; GitHub (Branches, Pull Requests)</span>
-                <span class="skill-level">Fortgeschritten</span>
+                <span>Git &amp; GitHub (Branches, Commits, Pull)</span>
+                <span class="skill-level">In Nutzung</span>
               </div>
               <div class="skill-item">
-                <span>VS Code / IDEs</span>
-                <span class="skill-level">Fortgeschritten</span>
+                <span>VS Code / IntelliJ</span>
+                <span class="skill-level">In Nutzung</span>
               </div>
               <div class="skill-item">
-                <span>Agile Basics (Scrum)</span>
+                <span>Agile Basics (Scrum/Kanban aus Theorie)</span>
                 <span class="skill-level">Grundlagen</span>
-              </div>
-              <div class="skill-item">
-                <span>Dokumentation &amp; Code lesen</span>
-                <span class="skill-level">In Lernphase</span>
               </div>
             </article>
           </div>
         </div>
 
         <!-- ===== TAB: PROJEKTE ===== -->
-        <div class="tab-panel" id="tab-projects">
+        <div class="tab-panel" id="tab-projects" role="tabpanel" aria-labelledby="tab-projects-tab" tabindex="0" hidden>
           <div class="projects-grid">
             <!-- Projektkarte 1 -->
             <article class="glass-card project-card">
               <div class="project-thumb">
-                Mockup: ToDo-Board mit Aufgabenliste, Filter und Button „Aufgabe hinzufügen“
+                Mockup: Screenshot einer kleinen Portfolio-Website mit Navigation und Karten
               </div>
-              <h3 class="panel-title">TaskTrack – ToDo Web-App</h3>
-              <p class="project-meta">Eigenes Lernprojekt · Frontend mit Local Storage</p>
+              <h3 class="panel-title">Persönliche Portfolio-Seite</h3>
+              <p class="project-meta">Eigenes Projekt · HTML, CSS, JavaScript</p>
               <div class="badge-row">
-                <span class="badge">HTML</span>
-                <span class="badge">CSS (Flexbox)</span>
-                <span class="badge">JavaScript</span>
-                <span class="badge">Local Storage</span>
+                <span class="badge">Responsive</span>
+                <span class="badge">Vanilla JS</span>
+                <span class="badge">Design-Fokus</span>
               </div>
               <p class="project-text">
-                TaskTrack ist eine ToDo-Anwendung, in der Aufgaben erstellt, als erledigt markiert und
-                gefiltert werden können. Die Daten werden im Local Storage des Browsers gespeichert, sodass
-                sie beim Neuladen erhalten bleiben.
+                Eine einseitige Portfolio-Seite mit responsivem Layout, Theme-Umschaltung und
+                dynamischen Tabs. Ziel: moderne UI mit Glassmorphism, klarer Struktur und
+                gut lesbaren Inhalten – optimiert für Desktop und Mobilgeräte.
               </p>
               <div class="project-links">
-                <a href="#">🔗 Live-Demo (Platzhalter)</a>
-                <a href="#">💻 Code auf GitHub</a>
+                <span>💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)</span>
               </div>
             </article>
 
             <!-- Projektkarte 2 -->
             <article class="glass-card project-card">
               <div class="project-thumb">
-                Mockup: Suchfeld, Filterchips und Liste von Kurskarten
+                Mockup: Tabellenansicht mit mehreren Kursen und Filterleiste
               </div>
-              <h3 class="panel-title">CourseFinder – Kurs-Suche</h3>
-              <p class="project-meta">Umschulungsprojekt · Arbeiten mit JSON (Fake-API)</p>
+              <h3 class="panel-title">CourseFinder (Mockup)</h3>
+              <p class="project-meta">Übungsprojekt · JavaScript &amp; DOM</p>
               <div class="badge-row">
-                <span class="badge">HTML</span>
-                <span class="badge">CSS</span>
-                <span class="badge">JavaScript</span>
-                <span class="badge">Fetch</span>
-                <span class="badge">JSON</span>
+                <span class="badge">Filterfunktion</span>
+                <span class="badge">Fetch / JSON</span>
+                <span class="badge">DOM-Manipulation</span>
               </div>
               <p class="project-text">
                 CourseFinder lädt Kursdaten aus einer JSON-Quelle und ermöglicht die Suche nach
@@ -270,7 +278,7 @@
                 Fehlerbehandlung bei asynchronen Aufrufen.
               </p>
               <div class="project-links">
-                <a href="#">💻 Code auf GitHub</a>
+                <span>💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)</span>
               </div>
             </article>
 
@@ -291,63 +299,50 @@
                 einsetzen, Listen verwalten und einfache Eingabevalidierung umsetzen.
               </p>
               <div class="project-links">
-                <a href="#">💻 Code auf GitHub</a>
+                <span>💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)</span>
               </div>
             </article>
           </div>
         </div>
 
-        <!-- ===== TAB: TIMELINE / LEBENSLAUF ===== -->
-        <div class="tab-panel" id="tab-timeline">
+        <!-- ===== TAB: LEBENSLAUF ===== -->
+        <div class="tab-panel" id="tab-timeline" role="tabpanel" aria-labelledby="tab-timeline-tab" tabindex="0" hidden>
           <div class="timeline-layout">
-            <!-- Linke Karte: eigentliche Timeline -->
+            <!-- Linke Karte: Zeitstrahl -->
             <article class="glass-card timeline-card">
-              <h3 class="panel-title">Timeline – Mein Weg in die IT</h3>
-              <div class="timeline">
-                <!-- Timeline-Eintrag 1 -->
-                <div class="timeline-item">
+              <h3 class="panel-title">Werdegang (Kurzüberblick)</h3>
+              <ol class="timeline">
+                <li class="timeline-item">
                   <div class="timeline-dot"></div>
-                  <div class="timeline-date">bis 2023</div>
-                  <div class="timeline-title">Tätigkeit im kaufmännischen Bereich</div>
-                  <div class="timeline-body">
-                    Mehrjährige Erfahrung in einem kundenorientierten Umfeld. Hier ist der Wunsch entstanden,
-                    mit Software Prozesse effizienter zu gestalten.
+                  <div class="timeline-content">
+                    <div class="timeline-year">aktuell</div>
+                    <div class="timeline-text">
+                      Umschulung zum Fachinformatiker Anwendungsentwicklung, Fokus auf Webentwicklung
+                      und Java.
+                    </div>
                   </div>
-                </div>
-
-                <!-- Timeline-Eintrag 2 -->
-                <div class="timeline-item">
+                </li>
+                <li class="timeline-item">
                   <div class="timeline-dot"></div>
-                  <div class="timeline-date">2023</div>
-                  <div class="timeline-title">Einstieg in die Programmierung</div>
-                  <div class="timeline-body">
-                    Erste Online-Kurse zu HTML, CSS und JavaScript, Aufbau kleiner eigener Webseiten und
-                    Entscheidung für eine berufliche Neuorientierung.
+                  <div class="timeline-content">
+                    <div class="timeline-year">davor</div>
+                    <div class="timeline-text">
+                      Mehrere Jahre Berufserfahrung im kaufmännischen Bereich, Kundenservice und
+                      Organisation.
+                    </div>
                   </div>
-                </div>
-
-                <!-- Timeline-Eintrag 3 -->
-                <div class="timeline-item">
+                </li>
+                <li class="timeline-item">
                   <div class="timeline-dot"></div>
-                  <div class="timeline-date">seit 2024</div>
-                  <div class="timeline-title">Umschulung zum Fachinformatiker AE</div>
-                  <div class="timeline-body">
-                    Start der Umschulung mit Schwerpunkten Webentwicklung, Java &amp; OOP, Datenbanken und
-                    Teamprojekten mit Git.
+                  <div class="timeline-content">
+                    <div class="timeline-year">erste Schritte</div>
+                    <div class="timeline-text">
+                      Online-Kurse, kleine Webprojekte und erste Übungen in Java, um herauszufinden,
+                      ob Softwareentwicklung zu mir passt.
+                    </div>
                   </div>
-                </div>
-
-                <!-- Timeline-Eintrag 4 -->
-                <div class="timeline-item">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-date">ab 2025</div>
-                  <div class="timeline-title">Gesuchtes Praktikum</div>
-                  <div class="timeline-body">
-                    Praktikum im Bereich Web- oder Anwendungsentwicklung, um das Gelernte in echten
-                    Projekten anzuwenden und weiter zu vertiefen.
-                  </div>
-                </div>
-              </div>
+                </li>
+              </ol>
             </article>
 
             <!-- Rechte Karte: Kurz-Lebenslauf -->
@@ -367,21 +362,31 @@
         </div>
 
         <!-- ===== TAB: KONTAKT ===== -->
-        <div class="tab-panel" id="tab-contact">
+        <div class="tab-panel" id="tab-contact" role="tabpanel" aria-labelledby="tab-contact-tab" tabindex="0" hidden>
           <div class="contact-layout">
-            <!-- Kontaktinfo -->
+            <!-- Kontakt-Card -->
             <article class="glass-card contact-info">
-              <h3 class="panel-title">Kontakt</h3>
-              <p>Ich freue mich über Ihre Nachricht – gern für ein Praktikum, ein Kennenlerngespräch oder einen Probearbeitstag.</p>
-              <p>📧 max.mustermann@example.com</p>
-              <p>📍 Musterstadt, Deutschland</p>
-              <p>🔗 GitHub: <a href="#">github.com/max</a></p>
-              <p>🔗 LinkedIn: <a href="#">linkedin.com/in/max</a></p>
+              <h3 class="panel-title">Kontaktmöglichkeiten</h3>
+              <ul class="contact-card-list">
+                <li>
+                  <strong>Über GitHub:</strong>
+                  Eröffnen Sie ein Issue im entsprechenden Repository (z.&nbsp;B. „Bewerbung / Portfolio“),
+                  wenn Sie mir Feedback geben oder Kontakt aufnehmen möchten.
+                </li>
+                <li>
+                  <strong>Über die Bewerbung:</strong>
+                  Nutzen Sie die Kontaktdaten (E-Mail, Telefon), die in meinen Bewerbungsunterlagen angegeben sind.
+                </li>
+              </ul>
             </article>
 
             <!-- Kontaktformular (Mockup) -->
             <form class="glass-card contact-form">
               <h3 class="panel-title">Nachricht senden (Mockup)</h3>
+              <p class="form-note">
+                Hinweis: Dieses Formular ist ein Demo-Formular. Für eine echte Anfrage nutzen Sie bitte
+                die Kontaktdaten in meinen Bewerbungsunterlagen oder GitHub-Issues im passenden Repository.
+              </p>
               <label for="name">Name</label>
               <input id="name" type="text" placeholder="Ihr Name" />
 
