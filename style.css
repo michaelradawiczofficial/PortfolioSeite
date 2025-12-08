@@ -15,13 +15,19 @@ body {
   height: 100%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
+
+  /* Overscroll-Fix gegen weiße Ränder bei Trackpad-Scroll */
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
+  -webkit-font-smoothing: antialiased;
 }
+
 
 :root {
   --bg-image: url("asset/Bilder/waves.png");
 }
 
-/* Seite mit Hintergrundbild (vom User bereitgestellt) */
+/* Seite mit Hintergrundbild */
 body {
   color: #e5e7eb;
   background-color: #020617;
@@ -31,7 +37,12 @@ body {
   background-size: cover, cover, cover;
   background-attachment: fixed;
   background-position: center;
+
+  /* hilft Chrome/Windows bei fixed-Background, reduziert „Kanten“ */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
+
 
 /* Hauptseite */
 .page {
@@ -45,7 +56,6 @@ body {
    HEADER & NAVIGATION
    ========================================= */
 
-/* Fixierter Header mit leichtem Blur */
 .header {
   position: sticky;
   top: 0;
@@ -55,7 +65,6 @@ body {
   border-bottom: 1px solid rgba(148, 163, 184, 0.5);
 }
 
-/* Nav-Leiste innerhalb des Headers */
 .nav {
   max-width: 1120px;
   margin: 0 auto;
@@ -66,7 +75,6 @@ body {
   gap: 1.25rem;
 }
 
-/* Logo-Bereich: minimalistisches "MR" + Text */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -102,7 +110,6 @@ body {
   color: #9ca3af;
 }
 
-/* Theme-Schalter rechts im Header */
 .theme-switch {
   display: inline-flex;
   align-items: center;
@@ -120,18 +127,22 @@ body {
 }
 
 .theme-btn {
-  padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  border: 2px solid rgba(148, 163, 184, 0.9);
-  background: rgba(15, 23, 42, 0.9);
-  color: #f9fafb;
-  font-size: 0.88rem;
-  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.86rem;
   font-weight: 500;
   letter-spacing: 0.04em;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
-    box-shadow 0.15s ease, transform 0.15s ease;
+  text-transform: uppercase;
+  background: rgba(15, 23, 42, 0.85);
+  color: #cbd5f5;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
+
 
 .theme-btn:hover {
   border-color: #38bdf8;
@@ -142,7 +153,6 @@ body {
    Glassmorphism-Komponenten
    ========================================= */
 
-/* Große Karten (Glasscards) – Standard für Dark */
 .glass-card {
   position: relative;
   border-radius: 1.25rem;
@@ -155,9 +165,9 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.7);
   box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(22px);
+  opacity: 0.85;
 }
 
-/* Kleine Pills aus Glas */
 .glass-pill {
   display: inline-flex;
   align-items: center;
@@ -169,7 +179,7 @@ body {
   font-size: 0.78rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  margin-bottom: 0.7rem; /* mehr Abstand zur Überschrift */
+  margin-bottom: 0.7rem;
 }
 
 /* Überschrift in Karten */
@@ -241,6 +251,8 @@ body {
   font-size: clamp(2.1rem, 3.6vw, 2.8rem);
   margin-bottom: 0.7rem;
   line-height: 1.2;
+  text-align:center;
+  max-width: 24ch; /* Breite begrenzen, Umbruch wird „lesbarer“ */
 }
 
 .hero-sub {
@@ -258,7 +270,7 @@ body {
 
 .hero-meta {
   font-size: 0.9rem;
-  color: #e5e7eb; /* etwas heller als vorher */
+  color: #e5e7eb;
 }
 
 .hero-photo-wrap {
@@ -277,12 +289,58 @@ body {
   display: block;
   object-fit: cover;
   border: 5px solid #020617;
-  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.18); /* weißlicher Schatten im Dark Theme */
+  box-shadow: 0 16px 40px rgba(255, 255, 255, 0.18);
 }
 
-/* Name-Pill unter dem Avatar */
+/* Name-Pill unter dem Avatar – zweizeilig */
 .hero-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  padding: 0.4rem 1rem;
+}
+
+.hero-name-main {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hero-name-sub {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+/* Große Pill im Hero – zweizeilig */
+ /* Große Pill im Hero – zweizeilig */
+.hero-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  padding: 0.35rem 1rem;
+
+  /* wirkt kompakter & weniger dominant */
+  max-width: max-content;
+  margin: 0 auto 1.1rem;
+}
+
+
+.hero-pill-main {
   font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hero-pill-sub {
+  font-size: 0.74rem;
+  opacity: 0.9;
+  text-transform: uppercase;
 }
 
 /* =========================================
@@ -293,7 +351,6 @@ body {
   margin-top: 2.8rem;
 }
 
-/* Kopfbereich (Überschrift + Tabs) */
 .section-intro {
   display: flex;
   flex-direction: column;
@@ -301,12 +358,10 @@ body {
   margin-bottom: 1.2rem;
 }
 
-/* Überschrift-Pill für „Inhalte“ */
 .section-heading {
   font-size: 0.78rem;
 }
 
-/* Tab-Buttons */
 .section-tabs {
   display: inline-flex;
   flex-wrap: wrap;
@@ -333,7 +388,6 @@ body {
   box-shadow: 0 12px 28px rgba(15, 23, 42, 0.75);
 }
 
-/* Tab-Panels */
 .tab-panels {
   margin-top: 1rem;
 }
@@ -388,6 +442,7 @@ body {
   font-size: 0.92rem;
 }
 
+/* zweispaltige Ausrichtung im Kurzprofil */
 .profile-list {
   list-style: none;
   display: flex;
@@ -395,11 +450,20 @@ body {
   gap: 0.65rem;
 }
 
+.profile-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
 .profile-label {
-  display: inline-block;
-  min-width: 6rem;
+  flex: 0 0 7rem;
   font-weight: 600;
   color: #e5e7eb;
+}
+
+.profile-list li span:last-child {
+  flex: 1;
 }
 
 /* =========================================
@@ -511,7 +575,7 @@ body {
 
 .timeline-item {
   position: relative;
-  margin-bottom: 1.6rem; /* etwas mehr Abstand */
+  margin-bottom: 1.6rem;
 }
 
 .timeline-dot {
@@ -526,7 +590,7 @@ body {
 }
 
 .timeline-content {
-  margin-left: 1.2rem; /* mehr Abstand zum Text */
+  margin-left: 1.2rem;
 }
 
 .timeline-year {
@@ -626,7 +690,6 @@ body {
   margin-top: 0.2rem;
 }
 
-/* kleine Hinweiszeile im Formular */
 .form-note {
   font-size: 0.8rem;
   color: #9ca3af;
@@ -653,7 +716,9 @@ body {
   .hero-grid,
   .about-layout,
   .timeline-layout,
-  .contact-layout {
+  .contact-layout,
+  .projects-grid,
+  .skills-layout {    /* <--- NEU: Auch Skills untereinander */
     grid-template-columns: 1fr;
   }
 
@@ -753,7 +818,6 @@ body[data-theme="light"] .tab-button {
   border-color: rgba(148, 163, 184, 0.8);
 }
 
-/* Light Theme: Ghost-Button besser lesbar */
 body[data-theme="light"] .btn-ghost {
   color: #1f2937;
   border-color: rgba(148, 163, 184, 0.9);
@@ -765,7 +829,6 @@ body[data-theme="light"] .btn-ghost:hover {
   border-color: #1f2937;
 }
 
-/* Light Theme: Überschriften & Meta im Werdegang deutlicher */
 body[data-theme="light"] .cv-card strong,
 body[data-theme="light"] .timeline-year,
 body[data-theme="light"] .project-meta,
@@ -775,7 +838,6 @@ body[data-theme="light"] .profile-label {
   font-weight: 600;
 }
 
-/* Light Theme: Kontaktformular-Felder hell */
 body[data-theme="light"] .contact-form input,
 body[data-theme="light"] .contact-form textarea {
   background: #ffffff;
@@ -792,7 +854,6 @@ body[data-theme="light"] .contact-form label {
   color: #111827;
 }
 
-/* Avatar-Schatten im Light-Theme etwas dezenter */
 body[data-theme="light"] .avatar {
   border-color: #ffffff;
   box-shadow: 0 10px 26px rgba(100, 116, 139, 0.6);
@@ -831,6 +892,9 @@ body[data-theme="contrast-dark"] .contact-form textarea {
 body[data-theme="contrast-dark"] .tab-button.active {
   background: #ffffff;
   color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px #ffffff;
+  font-weight: 700;
 }
 
 body[data-theme="contrast-dark"] .timeline::before {
@@ -863,7 +927,6 @@ body[data-theme="contrast-dark"] .avatar {
   box-shadow: none;
 }
 
-/* Kontrast-Theme: alle wichtigen Texte sehr hell */
 body[data-theme="contrast-dark"] .hero-meta,
 body[data-theme="contrast-dark"] .form-note,
 body[data-theme="contrast-dark"] .contact-form label,
@@ -877,13 +940,11 @@ body[data-theme="contrast-dark"] .badge {
   color: #ffffff;
 }
 
-/* Platzhaltertexte im Kontrast-Theme */
 body[data-theme="contrast-dark"] .contact-form input::placeholder,
 body[data-theme="contrast-dark"] .contact-form textarea::placeholder {
   color: #f5f5f5;
 }
 
-/* Kontrast-Theme: Schrift minimal größer */
 body[data-theme="contrast-dark"] .section-heading,
 body[data-theme="contrast-dark"] .nav-logo {
   font-weight: 700;
@@ -895,7 +956,6 @@ body[data-theme="contrast-dark"] .hero-section {
   font-size: 1.02rem;
 }
 
-/* Fokus-Farbe im Kontrast-Theme kräftig */
 body[data-theme="contrast-dark"] :focus-visible {
   outline-color: #fffb00;
 }
@@ -903,6 +963,7 @@ body[data-theme="contrast-dark"] :focus-visible {
 /* =========================================
    Klarere visuelle Hierarchie der Karten
    ========================================= */
+
 .hero-main,
 .project-card {
   box-shadow: 0 20px 60px rgba(15, 23, 42, 0.6);
@@ -916,30 +977,41 @@ body[data-theme="contrast-dark"] :focus-visible {
 }
 
 /* =========================================
-   Sanfte aktive Buttons (Tabs / Theme / Primary)
+   Sanfte aktive Buttons
    ========================================= */
 
-/* Sanfter aktiver Tab */
-.tab-button.active {
+/* =========================================
+   Sanfte aktive Buttons
+   ========================================= */
+
+/* Dark & Light Theme: Tabs + Theme-Buttons = Gradient */
+body[data-theme="dark"] .tab-button.active,
+body[data-theme="light"] .tab-button.active,
+body[data-theme="dark"] .theme-btn.active,
+body[data-theme="light"] .theme-btn.active {
   background: linear-gradient(135deg, #5ecfe5, #34d399);
   color: #020617;
-  box-shadow: 0 0 6px rgba(94, 207, 229, 0.35),
-              0 0 4px rgba(52, 211, 153, 0.3);
+  box-shadow:
+    0 0 6px rgba(94, 207, 229, 0.35),
+    0 0 4px rgba(52, 211, 153, 0.3);
+  font-weight: 600;
 }
 
-/* Sanfter aktiver Theme-Button */
-.theme-btn.active {
-  background: linear-gradient(135deg, #5ecfe5, #34d399);
-  color: #020617;
-  box-shadow: 0 0 6px rgba(94, 207, 229, 0.35),
-              0 0 4px rgba(52, 211, 153, 0.3);
+/* Kontrast-Theme: harte Schwarz/Weiß-Buttons */
+body[data-theme="contrast-dark"] .tab-button.active,
+body[data-theme="contrast-dark"] .theme-btn.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px #ffffff;
+  font-weight: 700;
 }
 
-/* Primary Button beim Anklicken subtil hervorheben */
 .btn-primary:active,
 .btn-primary:focus-visible {
   background: linear-gradient(135deg, #63d8ee, #41d9a3);
-  box-shadow: 0 0 8px rgba(99, 216, 238, 0.35),
-              0 0 4px rgba(65, 217, 163, 0.3);
+  box-shadow:
+    0 0 8px rgba(99, 216, 238, 0.35),
+    0 0 4px rgba(65, 217, 163, 0.3);
   transform: translateY(-1px);
 }

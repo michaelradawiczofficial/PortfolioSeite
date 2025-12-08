@@ -5,14 +5,14 @@
   <title>Portfolio – Fachinformatiker AE (Umschulung)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Einbinden der ausgelagerten CSS-Datei -->
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body data-theme="dark">
-  <!-- ================= HEADER: Logo + Theme-Auswahl ================= -->
+
+  <!-- HEADER -->
   <header class="header">
     <nav class="nav">
-      <!-- Logo / Titelbereich -->
       <div class="nav-logo">
         <span class="nav-logo-mark">MR</span>
         <div class="nav-logo-text">
@@ -21,11 +21,9 @@
         </div>
       </div>
 
-      <!-- Rechts: Theme-Auswahl -->
       <div class="theme-switch">
         <span class="theme-label">Theme:</span>
         <div class="theme-buttons">
-          <!-- Theme-Buttons (werden per JS ausgewertet) -->
           <button class="theme-btn active" data-theme-btn="dark" aria-pressed="true">Dark</button>
           <button class="theme-btn" data-theme-btn="light" aria-pressed="false">Light</button>
           <button class="theme-btn" data-theme-btn="contrast-dark" aria-pressed="false">Kontrast</button>
@@ -34,382 +32,450 @@
     </nav>
   </header>
 
-  <!-- ================= MAIN-BEREICH ================= -->
+
+  <!-- MAIN -->
   <main class="page">
-    <!-- ============== HERO / INTRO mit Glasscard + Avatar ============== -->
-    <section id="hero" class="hero-section" aria-labelledby="hero-title" role="region">
+
+    <!-- HERO -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-title">
       <div class="hero-grid">
-        <!-- Linke Hero-Glas-Karte mit Inhalt -->
+
+        <!-- Hero left -->
         <article class="glass-card hero-main">
-          <!-- Kleine Info-Pille über der Überschrift -->
-          <div class="hero-pill glass-pill">
-            Umschulung · Fachinformatiker Anwendungsentwicklung · Praktikum gesucht
+
+          <div class="glass-pill hero-pill">
+            <span class="hero-pill-main">Umschulung – Fachinformatiker AE</span>
+            <span class="hero-pill-sub">Praktikum gesucht (Start 16.01.2026)</span>
           </div>
 
-          <!-- Hauptüberschrift -->
           <h1 id="hero-title" class="hero-title glass-card-title">
-            Hi, ich bin Max – angehender Anwendungsentwickler.
+            Hi, ich bin Michael&nbsp;Radawicz&nbsp;–<br>
+            angehender Fachinformatiker für<br>
+            Anwendungsentwicklung.
           </h1>
 
-          <!-- Untertitel-Text -->
           <p class="hero-sub">
-            Ich befinde mich in der Umschulung zum Fachinformatiker Anwendungsentwicklung
-            und suche ein Praktikum, in dem ich aktiv an Web- und Softwareprojekten mitarbeiten
-            und von erfahrenen Entwickler:innen lernen kann.
+            Ich befinde mich in der Umschulung zum Fachinformatiker für Anwendungsentwicklung bei der
+            Lutz &amp; Grub AG in Karlsruhe. Dort vertiefe ich C#, .NET/WPF, JavaScript, Datenbanken
+            und moderne Softwarearchitektur und setze mein Wissen in praxisnahen Projekten wie einer
+            Bibliotheksverwaltung, einer Kaffeemaschinen-Simulation und dieser Portfolio-Website ein.
           </p>
 
-          <!-- Hero-Buttons: springen zu Tabs "Projekte" / "Kontakt" -->
-          <div class="hero-actions">
-            <button class="btn btn-primary" data-tab-jump="projects">
-              Projekte ansehen
-            </button>
-            <button class="btn btn-ghost" data-tab-jump="contact">
-              Kontakt aufnehmen
-            </button>
-          </div>
-
-          <!-- Zusatzinfo unter den Buttons -->
           <p class="hero-meta">
-            Fokus: Webentwicklung mit HTML, CSS, JavaScript · Java & OOP in der Umschulung ·
-            Git & GitHub im täglichen Einsatz.
+            Fokus: C#, .NET/WPF &amp; JavaScript · Webentwicklung mit HTML &amp; CSS · SQL-Grundlagen,
+            JSON &amp; CSV · Git &amp; GitHub im täglichen Einsatz · Pflichtpraktikum ab 16.01.2026
+            (ca. 10 Monate, Raum Karlsruhe/Baden-Baden).
           </p>
         </article>
 
-        <!-- Rechte Seite: Avatar + Name als Glasscard -->
+        <!-- Hero right -->
         <aside class="glass-card hero-photo-wrap">
-          <!-- Kreis-Avatar mit Bild -->
           <img class="avatar" src="asset/Bilder/bew.jpg" alt="Michael Radawicz" />
-
-          <!-- Name + Ort als kleine Glass-Pill -->
           <div class="glass-pill hero-name">
-            Max Mustermann · Musterstadt
+            <span class="hero-name-main">Michael Radawicz</span>
+              <span class="hero-name-sub">Raum Karlsruhe / Baden-Baden</span>
           </div>
         </aside>
+
       </div>
     </section>
 
-    <!-- ============== SECTIONS / TABS: Buttons + Inhalte ============== -->
-    <section id="sections" class="sections" aria-labelledby="section-heading" role="region">
-      <!-- Kopfbereich für die Tabs (Section-Überschriften als Buttons) -->
+
+    <!-- SECTIONS -->
+    <section id="sections" class="sections" aria-labelledby="section-heading">
+
       <div class="section-intro">
-        <!-- Titel der Sektion als Glass-Pill -->
         <h2 id="section-heading" class="glass-pill section-heading">
           Inhalte
         </h2>
 
-        <!-- Horizontale Button-Leiste (Tabs) -->
         <div class="section-tabs" role="tablist" aria-label="Inhaltsbereiche">
-          <!-- Jeder Button steht für eine „Section“ / ein Panel -->
-          <button id="tab-about-tab" class="tab-button active" data-tab="about" role="tab" aria-selected="true" aria-controls="tab-about" tabindex="0">
-            Über mich
-          </button>
-          <button id="tab-skills-tab" class="tab-button" data-tab="skills" role="tab" aria-selected="false" aria-controls="tab-skills" tabindex="-1">
-            Skills
-          </button>
-          <button id="tab-projects-tab" class="tab-button" data-tab="projects" role="tab" aria-selected="false" aria-controls="tab-projects" tabindex="-1">
-            Projekte
-          </button>
-          <button id="tab-timeline-tab" class="tab-button" data-tab="timeline" role="tab" aria-selected="false" aria-controls="tab-timeline" tabindex="-1">
-            Lebenslauf
-          </button>
-          <button id="tab-contact-tab" class="tab-button" data-tab="contact" role="tab" aria-selected="false" aria-controls="tab-contact" tabindex="-1">
-            Kontakt
-          </button>
+
+          <button
+            id="tab-about-tab"
+            class="tab-button active"
+            data-tab="about"
+            role="tab"
+            aria-selected="true"
+            aria-controls="tab-about"
+            tabindex="0"
+          >Über mich</button>
+
+          <button
+            id="tab-skills-tab"
+            class="tab-button"
+            data-tab="skills"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-skills"
+            tabindex="-1"
+          >Skills</button>
+
+          <button
+            id="tab-projects-tab"
+            class="tab-button"
+            data-tab="projects"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-projects"
+            tabindex="-1"
+          >Projekte</button>
+
+          <button
+            id="tab-timeline-tab"
+            class="tab-button"
+            data-tab="timeline"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-timeline"
+            tabindex="-1"
+          >Lebenslauf</button>
+
+          <button
+            id="tab-contact-tab"
+            class="tab-button"
+            data-tab="contact"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-contact"
+            tabindex="-1"
+          >Kontakt</button>
+
         </div>
       </div>
 
-      <!-- ========== TAB-INHALTE ========== -->
+
+      <!-- TAB PANELS -->
       <div class="tab-panels">
-        <!-- ===== TAB: ÜBER MICH ===== -->
-        <div class="tab-panel active" id="tab-about" role="tabpanel" aria-labelledby="tab-about-tab" tabindex="0">
+
+        <!-- ABOUT -->
+        <div class="tab-panel active" id="tab-about" role="tabpanel" aria-labelledby="tab-about-tab">
           <div class="about-layout">
-            <!-- Haupt-„Über mich“-Text -->
+
             <article class="glass-card about-card">
               <h3 class="panel-title">Über mich</h3>
               <p>
-                Ich komme ursprünglich aus einem anderen Berufsfeld und habe dort mehrere Jahre
-                im kaufmännischen Umfeld gearbeitet. In dieser Zeit habe ich gemerkt, dass mich
-                Software und Automatisierung immer mehr faszinieren, weil sie Abläufe messbar
-                verbessern können.
+                Ich bin angehender Fachinformatiker für Anwendungsentwicklung mit Schwerpunkt auf C#/.NET
+                und JavaScript. Nach vielen Jahren im technischen Einzelhandel habe ich gemerkt, dass ich
+                Probleme nicht nur erklären, sondern selbst in Softwarelösungen abbilden möchte.
               </p>
               <p>
-                Nach ersten eigenen Schritten mit Online-Kursen und kleineren Webprojekten habe
-                ich mich bewusst für die Umschulung zum Fachinformatiker Anwendungsentwicklung
-                entschieden. Mir macht es Spaß, Probleme strukturiert anzugehen und Lösungen
-                so zu bauen, dass sie für andere gut nachvollziehbar sind.
+                Seit 2023 vertiefe ich meine Kenntnisse in der Umschulung bei der Lutz &amp; Grub AG in Karlsruhe
+                und durch eigene Projekte. Dazu gehören eine WPF-Bibliotheksverwaltung mit Rollenrechten,
+                CRUD- und Suchfunktionen, eine Kaffeemaschinen-Simulation sowie diese Portfolio-Website.
               </p>
               <p>
-                Aktuell arbeite ich vor allem mit HTML, CSS und JavaScript, lerne Java und
-                übe den Umgang mit Git/GitHub in kleinen Projekten. Für mein Praktikum ist
-                mir wichtig, dass ich sowohl mitarbeiten als auch dazulernen kann – ideal in
-                einem Umfeld, in dem Fragen stellen ausdrücklich erwünscht ist.
+                Aus über 17 Jahren Berufserfahrung bringe ich eine ausgeprägte Kundenorientierung, strukturierte
+                Arbeitsweise und Freude an klarer Kommunikation mit. Im Praktikum möchte ich mich in bestehende
+                Projekte einbringen und gleichzeitig von erfahrenen Entwickler:innen lernen.
               </p>
 
-              <!-- Tags mit Eigenschaften -->
               <div class="tag-list">
                 <span class="tag">Quereinsteiger</span>
-                <span class="tag">Teamorientiert</span>
-                <span class="tag">Lernbereit</span>
-                <span class="tag">Problemlöser</span>
+                <span class="tag">Analytisch</span>
+                <span class="tag">Kommunikationsstark</span>
+                <span class="tag">Lösungsorientiert</span>
               </div>
             </article>
 
-            <!-- Kurzprofil-Box -->
             <aside class="glass-card profile-card">
               <h3 class="panel-title">Kurzprofil</h3>
               <ul class="profile-list">
                 <li>
                   <span class="profile-label">Ziel:</span>
-                  <span>Praktikum als Fachinformatiker AE mit Schwerpunkt Webentwicklung</span>
+                  <span>Pflichtpraktikum (Start 16.01.2026, Dauer ca. 10 Monate)</span>
                 </li>
                 <li>
                   <span class="profile-label">Technologien:</span>
-                  <span>HTML, CSS, JavaScript, Java, Git &amp; GitHub</span>
+                  <span>C#, .NET/WPF, JavaScript, HTML &amp; CSS, SQL-Grundlagen</span>
                 </li>
                 <li>
                   <span class="profile-label">Arbeitsweise:</span>
-                  <span>Strukturiert, zuverlässig, offen für Feedback</span>
+                  <span>Strukturiert, teamorientiert, aktives Zuhören</span>
                 </li>
                 <li>
                   <span class="profile-label">Stärken:</span>
-                  <span>Analytisches Denken, Kommunikation, Lernmotivation</span>
+                  <span>Technische Analyse, Problemlösung, Kommunikation</span>
                 </li>
               </ul>
             </aside>
+
           </div>
         </div>
 
-        <!-- ===== TAB: SKILLS ===== -->
-        <div class="tab-panel" id="tab-skills" role="tabpanel" aria-labelledby="tab-skills-tab" tabindex="0" hidden>
+
+        <!-- SKILLS -->
+        <div class="tab-panel" id="tab-skills" role="tabpanel" aria-labelledby="tab-skills-tab" hidden>
           <div class="skills-layout">
-            <!-- Skill-Bereich: Frontend -->
+
             <article class="glass-card skill-card">
-              <h3 class="panel-title">Frontend</h3>
-              <div class="skill-item">
-                <span>HTML5 (Semantik, Formulare, Struktur)</span>
-                <span class="skill-level">Fortgeschritten</span>
-              </div>
-              <div class="skill-item">
-                <span>CSS3 (Flexbox, Grid, Responsive)</span>
-                <span class="skill-level">Fortgeschritten</span>
-              </div>
-              <div class="skill-item">
-                <span>JavaScript (ES6+, DOM, Events)</span>
-                <span class="skill-level">In Lernphase</span>
-              </div>
+              <h3 class="panel-title">Sprachen &amp; Frameworks</h3>
+
+              <div class="skill-item"><span>C#, .NET, WPF</span><span class="skill-level">in Nutzung</span></div>
+              <div class="skill-item"><span>JavaScript</span><span class="skill-level">in Nutzung</span></div>
+              <div class="skill-item"><span>HTML &amp; CSS</span><span class="skill-level">fortgeschritten</span></div>
+              <div class="skill-item"><span>SQL-Grundlagen</span><span class="skill-level">Grundlagen</span></div>
+              <div class="skill-item"><span>JSON, CSV</span><span class="skill-level">Grundlagen</span></div>
             </article>
 
-            <!-- Skill-Bereich: Backend & Daten -->
             <article class="glass-card skill-card">
-              <h3 class="panel-title">Backend &amp; Daten</h3>
-              <div class="skill-item">
-                <span>Java (OOP, Klassen, Collections)</span>
-                <span class="skill-level">Grundlagen</span>
-              </div>
-              <div class="skill-item">
-                <span>Konsolenanwendungen</span>
-                <span class="skill-level">Grundlagen</span>
-              </div>
-              <div class="skill-item">
-                <span>SQL &amp; einfache Abfragen</span>
-                <span class="skill-level">In Lernphase</span>
-              </div>
+              <h3 class="panel-title">Tools</h3>
+
+              <div class="skill-item"><span>Visual Studio</span><span class="skill-level">in Nutzung</span></div>
+              <div class="skill-item"><span>VS Code</span><span class="skill-level">in Nutzung</span></div>
+              <div class="skill-item"><span>Git &amp; GitHub</span><span class="skill-level">in Nutzung</span></div>
+              <div class="skill-item"><span>Chrome/Edge DevTools</span><span class="skill-level">in Nutzung</span></div>
             </article>
 
-            <!-- Skill-Bereich: Tools & Zusammenarbeit -->
             <article class="glass-card skill-card">
-              <h3 class="panel-title">Tools &amp; Zusammenarbeit</h3>
-              <div class="skill-item">
-                <span>Git &amp; GitHub (Branches, Commits, Pull)</span>
-                <span class="skill-level">In Nutzung</span>
-              </div>
-              <div class="skill-item">
-                <span>VS Code / IntelliJ</span>
-                <span class="skill-level">In Nutzung</span>
-              </div>
-              <div class="skill-item">
-                <span>Agile Basics (Scrum/Kanban aus Theorie)</span>
-                <span class="skill-level">Grundlagen</span>
-              </div>
+              <h3 class="panel-title">Soft Skills</h3>
+              <div class="skill-item"><span>Aktives Zuhören</span><span class="skill-level">Stärke</span></div>
+              <div class="skill-item"><span>Strukturiert</span><span class="skill-level">Stärke</span></div>
+              <div class="skill-item"><span>Lösungsorientiert</span><span class="skill-level">Stärke</span></div>
+              <div class="skill-item"><span>Kommunikationsstark</span><span class="skill-level">Stärke</span></div>
+              <div class="skill-item"><span>Scrum (Basis)</span><span class="skill-level">Grundlagen</span></div>
             </article>
+
           </div>
         </div>
 
-        <!-- ===== TAB: PROJEKTE ===== -->
-        <div class="tab-panel" id="tab-projects" role="tabpanel" aria-labelledby="tab-projects-tab" tabindex="0" hidden>
+
+        <!-- PROJECTS -->
+        <div class="tab-panel" id="tab-projects" role="tabpanel" aria-labelledby="tab-projects-tab" hidden>
           <div class="projects-grid">
-            <!-- Projektkarte 1 -->
+
+            <!-- Library Management -->
             <article class="glass-card project-card">
-              <div class="project-thumb">
-                Mockup: Screenshot einer kleinen Portfolio-Website mit Navigation und Karten
+              <div class="project-thumb">Mockup: Bibliotheksverwaltung</div>
+              <h3 class="panel-title">Bibliotheksverwaltung</h3>
+              <p class="project-meta">C#, .NET, WPF, MVVM</p>
+
+              <div class="badge-row">
+                <span class="badge">Login</span>
+                <span class="badge">CRUD</span>
+                <span class="badge">Filter</span>
               </div>
-              <h3 class="panel-title">Persönliche Portfolio-Seite</h3>
-              <p class="project-meta">Eigenes Projekt · HTML, CSS, JavaScript</p>
+
+              <p class="project-text">
+                Desktop-Anwendung zur Verwaltung von Medien und Nutzern mit Rollenrechten,
+                Login-System und Such-/Filterfunktionen.
+              </p>
+
+              <div class="project-links">
+                💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)
+              </div>
+            </article>
+
+            <!-- Coffee Machine -->
+            <article class="glass-card project-card">
+              <div class="project-thumb">Mockup: Kaffeemaschine UI</div>
+              <h3 class="panel-title">Kaffeemaschinen-Simulation</h3>
+              <p class="project-meta">JavaScript, HTML, CSS</p>
+
+              <div class="badge-row">
+                <span class="badge">State-Logic</span>
+                <span class="badge">10% Mahlverlust</span>
+                <span class="badge">UI</span>
+              </div>
+
+              <p class="project-text">
+                Simulation mit automatischer Kompensation von Mahlverlust, UI-Feedback und
+                Zustandsverwaltung.
+              </p>
+
+              <div class="project-links">
+                💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)
+              </div>
+            </article>
+
+            <!-- Portfolio -->
+            <article class="glass-card project-card">
+              <img 
+                src="asset/Bilder/portfolio.png" 
+                alt="Vorschau der Portfolio Website" 
+                style="width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 0.8rem; object-fit: cover;"
+              />
+
+              <h3 class="panel-title">Portfolio-Website</h3>
+              <p class="project-meta">HTML, CSS, JavaScript</p>
+
               <div class="badge-row">
                 <span class="badge">Responsive</span>
-                <span class="badge">Vanilla JS</span>
-                <span class="badge">Design-Fokus</span>
+                <span class="badge">Theme-System</span>
+                <span class="badge">ARIA-Tabs</span>
               </div>
+
               <p class="project-text">
-                Eine einseitige Portfolio-Seite mit responsivem Layout, Theme-Umschaltung und
-                dynamischen Tabs. Ziel: moderne UI mit Glassmorphism, klarer Struktur und
-                gut lesbaren Inhalten – optimiert für Desktop und Mobilgeräte.
+                Moderne Portfolio-Seite mit Glassmorphism, Dark/Light/Contrast Themes,
+                ARIA-konformen Tabs und Fokus auf Lesbarkeit.
               </p>
+
               <div class="project-links">
-                <span>💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)</span>
+                <a href="https://github.com/michaelradawiczofficial/PortfolioSeite.git" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+                  <span>💻</span>
+                  <span style="color: #38bdf8; font-weight: 500;">Code auf GitHub ansehen</span>
+                </a>
               </div>
             </article>
 
-            <!-- Projektkarte 2 -->
-            <article class="glass-card project-card">
-              <div class="project-thumb">
-                Mockup: Tabellenansicht mit mehreren Kursen und Filterleiste
-              </div>
-              <h3 class="panel-title">CourseFinder (Mockup)</h3>
-              <p class="project-meta">Übungsprojekt · JavaScript &amp; DOM</p>
-              <div class="badge-row">
-                <span class="badge">Filterfunktion</span>
-                <span class="badge">Fetch / JSON</span>
-                <span class="badge">DOM-Manipulation</span>
-              </div>
-              <p class="project-text">
-                CourseFinder lädt Kursdaten aus einer JSON-Quelle und ermöglicht die Suche nach
-                Titel und Kategorie. Fokus: Arbeiten mit Fetch, Filtern von Arrays und einfache
-                Fehlerbehandlung bei asynchronen Aufrufen.
-              </p>
-              <div class="project-links">
-                <span>💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)</span>
-              </div>
-            </article>
-
-            <!-- Projektkarte 3 -->
-            <article class="glass-card project-card">
-              <div class="project-thumb">
-                Mockup: Konsolenmenü mit Optionen „Kontakt hinzufügen“, „Kontakt anzeigen“, „Kontakt löschen“
-              </div>
-              <h3 class="panel-title">Java-Kontaktverwaltung (CLI)</h3>
-              <p class="project-meta">Umschulungsprojekt · Java &amp; OOP-Vertiefung</p>
-              <div class="badge-row">
-                <span class="badge">Java</span>
-                <span class="badge">OOP</span>
-                <span class="badge">Collections</span>
-              </div>
-              <p class="project-text">
-                Konsolenanwendung zur Verwaltung von Kontakten. Ziel: Klassen und Objekte praktisch
-                einsetzen, Listen verwalten und einfache Eingabevalidierung umsetzen.
-              </p>
-              <div class="project-links">
-                <span>💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)</span>
-              </div>
-            </article>
           </div>
         </div>
 
-        <!-- ===== TAB: LEBENSLAUF ===== -->
-        <div class="tab-panel" id="tab-timeline" role="tabpanel" aria-labelledby="tab-timeline-tab" tabindex="0" hidden>
+
+        <!-- TIMELINE -->
+        <div class="tab-panel" id="tab-timeline" role="tabpanel" aria-labelledby="tab-timeline-tab" hidden>
           <div class="timeline-layout">
-            <!-- Linke Karte: Zeitstrahl -->
+
             <article class="glass-card timeline-card">
-              <h3 class="panel-title">Werdegang (Kurzüberblick)</h3>
+              <h3 class="panel-title">Werdegang</h3>
               <ol class="timeline">
+
                 <li class="timeline-item">
                   <div class="timeline-dot"></div>
                   <div class="timeline-content">
-                    <div class="timeline-year">aktuell</div>
+                    <div class="timeline-year">seit 08/2023</div>
                     <div class="timeline-text">
-                      Umschulung zum Fachinformatiker Anwendungsentwicklung, Fokus auf Webentwicklung
-                      und Java.
+                      Umschulung FIAN bei Lutz &amp; Grub AG, Karlsruhe.
+                      C#, .NET/WPF, JavaScript, SQL, Softwarearchitektur, Scrum, Git &amp; GitHub.
                     </div>
                   </div>
                 </li>
+
                 <li class="timeline-item">
                   <div class="timeline-dot"></div>
                   <div class="timeline-content">
-                    <div class="timeline-year">davor</div>
+                    <div class="timeline-year">05/2022 – 08/2023</div>
                     <div class="timeline-text">
-                      Mehrere Jahre Berufserfahrung im kaufmännischen Bereich, Kundenservice und
-                      Organisation.
+                      IT-Neuorientierung, Selbststudium (Webentwicklung → C#), erste Projekte.
                     </div>
                   </div>
                 </li>
+
                 <li class="timeline-item">
                   <div class="timeline-dot"></div>
                   <div class="timeline-content">
-                    <div class="timeline-year">erste Schritte</div>
+                    <div class="timeline-year">2018 – 2022</div>
                     <div class="timeline-text">
-                      Online-Kurse, kleine Webprojekte und erste Übungen in Java, um herauszufinden,
-                      ob Softwareentwicklung zu mir passt.
+                      Apollo Optik – Verkaufsberater mit technischer Beratung.
+                      Analyse von Kundenbedarfen, Datenübertragung, Beratung.
                     </div>
                   </div>
                 </li>
+
+                <li class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-year">2007 – 2018</div>
+                    <div class="timeline-text">
+                      Media Markt – Service &amp; Information.
+                      Technische Problemanalyse, Reklamationsmanagement.
+                    </div>
+                  </div>
+                </li>
+
+                <li class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-year">Ausbildung</div>
+                    <div class="timeline-text">
+                      Kaufmann im Einzelhandel – Karl electronics GmbH.
+                    </div>
+                  </div>
+                </li>
+
+                <li class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <div class="timeline-year">Schulbildung</div>
+                    <div class="timeline-text">
+                      Fachhochschulreife – Handelslehranstalt Gernsbach.
+                    </div>
+                  </div>
+                </li>
+
               </ol>
             </article>
 
-            <!-- Rechte Karte: Kurz-Lebenslauf -->
             <aside class="glass-card cv-card">
-              <h3 class="panel-title">Lebenslauf (Kurzfassung)</h3>
+              <h3 class="panel-title">Kurzfassung</h3>
               <ul>
-                <li><strong>Berufserfahrung:</strong> kaufmännischer Bereich (Kundenservice, Organisation)</li>
-                <li><strong>Seit 2024:</strong> Umschulung Fachinformatiker Anwendungsentwicklung</li>
-                <li><strong>Projekte:</strong> Web-Apps, Java-Konsolenprojekte, Arbeiten mit Git/GitHub</li>
-                <li><strong>Sprachen:</strong> Deutsch (Muttersprache), Englisch (gut)</li>
+                <li><strong>Profil:</strong> FIAN (Umschulung), Schwerpunkt C#, .NET &amp; JavaScript</li>
+                <li><strong>Projekte:</strong> WPF-Bibliothek, Kaffeemaschine, Portfolio</li>
+                <li><strong>Erfahrung:</strong> 17+ Jahre technische Analyse &amp; Beratung</li>
+                <li><strong>Zertifikate:</strong> Scrum Master (Basis), ITIL, MS900, GPM Basis</li>
+                <li><strong>Sprachen:</strong> Deutsch, Englisch</li>
+                <li><strong>Hobbys:</strong> Fantasy/Sci-Fi, Zeichnen, Filme, Strategie-Games</li>
               </ul>
               <p class="cv-hint">
-                Einen ausführlichen Lebenslauf kann ich gerne als PDF bereitstellen.
+                Ausführliche Unterlagen gerne auf Anfrage.
               </p>
             </aside>
+
           </div>
         </div>
 
-        <!-- ===== TAB: KONTAKT ===== -->
-        <div class="tab-panel" id="tab-contact" role="tabpanel" aria-labelledby="tab-contact-tab" tabindex="0" hidden>
+
+        <!-- CONTACT -->
+        <div class="tab-panel" id="tab-contact" role="tabpanel" aria-labelledby="tab-contact-tab" hidden>
           <div class="contact-layout">
-            <!-- Kontakt-Card -->
+
             <article class="glass-card contact-info">
               <h3 class="panel-title">Kontaktmöglichkeiten</h3>
               <ul class="contact-card-list">
+
                 <li>
-                  <strong>Über GitHub:</strong>
-                  Eröffnen Sie ein Issue im entsprechenden Repository (z.&nbsp;B. „Bewerbung / Portfolio“),
-                  wenn Sie mir Feedback geben oder Kontakt aufnehmen möchten.
+                  <strong>Über GitHub (bevorzugt):</strong>
+                  Eröffnen Sie ein Issue im Repository dieser Portfolio-Seite mit dem Betreff
+                  „Praktikum Fachinformatiker AE – Kontaktaufnahme“.
                 </li>
+
                 <li>
-                  <strong>Über die Bewerbung:</strong>
-                  Nutzen Sie die Kontaktdaten (E-Mail, Telefon), die in meinen Bewerbungsunterlagen angegeben sind.
+                  <strong>Über Bewerbungsunterlagen:</strong>
+                  Vollständige Kontaktdaten (Adresse, E-Mail, Telefon) stehen ausschließlich
+                  in meinen Bewerbungsunterlagen. Auf dieser Seite werden keine
+                  personenbezogenen Daten angezeigt.
                 </li>
+
               </ul>
             </article>
 
-            <!-- Kontaktformular (Mockup) -->
+
             <form class="glass-card contact-form">
               <h3 class="panel-title">Nachricht senden (Mockup)</h3>
-              <p class="form-note">
-                Hinweis: Dieses Formular ist ein Demo-Formular. Für eine echte Anfrage nutzen Sie bitte
-                die Kontaktdaten in meinen Bewerbungsunterlagen oder GitHub-Issues im passenden Repository.
+
+              <p class="form-note" aria-live="polite">
+                Hinweis: Demo-Formular. Für echte Anfragen bitte GitHub Issue oder
+                Kontaktdaten in den Bewerbungsunterlagen verwenden.
               </p>
+
               <label for="name">Name</label>
               <input id="name" type="text" placeholder="Ihr Name" />
 
               <label for="email">E-Mail</label>
-              <input id="email" type="email" placeholder="ihre.mail@beispiel.de" />
+              <input id="email" type="email" placeholder="mail@beispiel.de" />
 
               <label for="message">Nachricht</label>
               <textarea id="message" placeholder="Worum geht es?"></textarea>
 
-              <button type="submit" class="btn btn-primary">Nachricht senden</button>
+              <button type="submit" class="btn btn-primary">
+                Nachricht senden
+              </button>
             </form>
+
           </div>
         </div>
+
       </div>
     </section>
+
   </main>
 
-  <!-- ================= FOOTER ================= -->
+
+  <!-- FOOTER -->
   <footer class="footer">
-    © 2025 Max Mustermann · Portfolio
+    © 2025 Michael Radawicz · Portfolio
   </footer>
 
-  <!-- Einbinden der ausgelagerten JS-Datei -->
   <script src="script.js"></script>
 </body>
 </html>

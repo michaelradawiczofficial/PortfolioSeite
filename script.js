@@ -142,24 +142,6 @@ if (tabList) {
 }
 
 // =====================================
-// Hero-Buttons: direkt zu Tab springen
-// =====================================
-
-document.querySelectorAll("[data-tab-jump]").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const tabId = btn.dataset.tabJump;
-    if (!tabId) return;
-
-    setActiveTab(tabId, { focus: true });
-
-    const targetSection = document.getElementById("sections");
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-});
-
-// =====================================
 // Kontaktformular: Mockup klar kennzeichnen
 // =====================================
 
