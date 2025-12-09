@@ -1,81 +1,126 @@
-Portfolio Website – Michael Radawicz
-Dies ist das Repository meiner persönlichen Portfolio-Webseite. Das Projekt wurde entwickelt, um meine Fähigkeiten als angehender Fachinformatiker für Anwendungsentwicklung zu demonstrieren. Der Fokus lag auf sauberem Code, Barrierefreiheit und einem modernen UI-Design ohne die Verwendung großer Frameworks.
+# 🌐 PortfolioSeite – Persönliches Entwickler-Portfolio
 
-🌟 Features
-Modernes Design: "Glassmorphism"-Look mit halbtransparenten Karten und Hintergrund-Unschärfe (backdrop-filter).
+Dieses Projekt ist meine **persönliche Portfolio-Website**, entwickelt in **HTML, CSS und JavaScript**.  
+Die Seite stellt meine Softwareprojekte vor und zeigt, wie ich **moderne Weboberflächen strukturiert aufbaue** – ohne Frameworks, mit klar geordnetem Code und responsivem Layout.
 
-Theme-System: Vollständiger Support für Dark Mode, Light Mode und einen High-Contrast Mode.
+Das Projekt entstand im Rahmen meiner **Umschulung zum Fachinformatiker für Anwendungsentwicklung**, um Arbeitgebern einen **überblickbaren und echten Eindruck** meiner Arbeit zu geben.
 
-Die Auswahl wird via localStorage gespeichert.
+---
 
-Automatische Erkennung der Systempräferenz.
+## 🎯 Ziel des Projekts
 
-Barrierefreiheit (Accessibility):
+Mein Ziel war eine **klare, professionelle Darstellung** meiner Projekte, die sowohl für Personalverantwortliche als auch für technische Fachkräfte leicht verständlich ist:
 
-ARIA-konforme Tab-Navigation (Tastatursteuerung via Pfeiltasten).
+- aufgeräumtes Design
+- klare Struktur der Inhalte
+- kurze Projektbeschreibungen
+- Fokus auf **funktionale Ergebnisse**
+- moderne Darstellung (Dark Theme)
+- responsive Ansicht für Desktop & Tablet
 
-Semantisches HTML5 (<main>, <article>, <nav>, etc.).
+Die Website zeigt bewusst **keine übertriebenen Animationen**, sondern konzentriert sich auf **Inhalte und Lesbarkeit**.
 
-Respektiert prefers-reduced-motion Systemeinstellungen, um Animationen für empfindliche Nutzer zu deaktivieren.
+---
 
-Responsive Design: Vollständig angepasst für Desktop, Tablet und Mobile (CSS Grid & Flexbox).
+## 🧑‍💻 Funktionsumfang (einfach erklärt)
 
-Interaktive UI: Leichte 3D-Tilt-Effekte auf Karten (mit Mausbewegung), implementiert in Vanilla JavaScript.
+- Startseite mit persönlicher Vorstellung
+- Übersicht der Projekte als **Projektkacheln**
+- kurzer Einblick in jedes Projekt:
+  - technisch: Sprache, Technologie
+  - inhaltlich: Funktion, Ziel
+- Links zu GitHub-Repos
+- Kontaktbereich (E-Mail, GitHub)
+- **frei erweiterbare Struktur**, um neue Projekte aufzunehmen
 
-🛠 Technologien
-Das Projekt verzichtet bewusst auf schwere Frameworks, um fundierte Grundlagenkenntnisse in den Web-Core-Technologien zu zeigen:
+Die Darstellung ist **bewusst minimalistisch**, um die Aufmerksamkeit auf die Inhalte zu lenken.
 
-HTML5: Semantische Strukturierung.
+---
 
-CSS3:
+## 🏛️ Aufbau der Anwendung
 
-CSS Custom Properties (Variables) für das Theming.
+Die Portfolio-Seite basiert auf einer **klaren, nachvollziehbaren Struktur**:
 
-Modernes Layout mit Grid und Flexbox.
+- **index.html**  
+  Inhalt und Aufbau der Seite
 
-Media Queries für Responsiveness.
+- **style.css**  
+  Gestaltung: Farbschema, Kontraste, Layout, Projektkarten
 
-JavaScript (ES6+):
+- **script.js**  
+  kleinere Interaktionen und Logik (z. B. Theme oder UI-Effekte)
 
-DOM-Manipulation ohne jQuery.
+- **/asset**  
+  Bilder, Icons und Projektgrafiken
 
-Event-Handling für Tabs und Theme-Switcher.
+Diese Struktur zeigt, dass ich die **Trennung von Inhalt, Design und Logik** konsequent umsetze.
 
-State-Management für UI-Komponenten.
+---
 
-🚀 Installation & Nutzung
-Da es sich um eine statische Webseite handelt, ist keine komplexe Installation (npm/node) notwendig.
+## 📂 Assets & Datenstruktur
 
-Repository klonen:
+Alle grafischen Inhalte befinden sich **separat im Ordner**:
 
-Bash
+/asset
 
-git clone https://github.com/michaelradawiczofficial/portfolio-website.git
-Öffnen: Öffne einfach die Datei index.html in einem modernen Webbrowser.
+Dort liegen:
+- Projektbilder
+- Icons
+- Grafiken für die Vorschau
 
-Alternativ (für Live-Reloading während der Entwicklung): Verwende die "Live Server" Extension in VS Code.
+Die Webseite **lädt keine externen Daten**, sondern nutzt statische Inhalte, wie für ein Portfolio üblich.  
+Damit ist die Seite **leicht wartbar**, und Projekte lassen sich einfach ergänzen.
 
-📂 Projektstruktur
-Plaintext
+---
 
-/
-├── index.html      # Hauptstruktur und Inhalt
-├── style.css       # Alle Styles, Themes und Animationen
-├── script.js       # Logik für Themes, Tabs und Motion-Effects
-└── asset/
-    └── Bilder/     # Profilbilder und Hintergründe
-🎨 Design-Details
-Theme Switcher Logik
-Der Theme-Switcher (script.js) prüft beim Laden, ob ein Theme im localStorage hinterlegt ist. Falls nicht, wird ein Fallback-Wert genutzt. Das CSS nutzt Attribut-Selektoren ([data-theme="light"]), um Farben dynamisch auszutauschen.
+## 🧠 Was ich dabei gelernt habe
 
-Tab-System
-Die Tabs unter "Inhalte" sind nicht nur visuell, sondern auch logisch verknüpft. Das JavaScript sorgt dafür, dass aria-selected und tabindex Attribute korrekt gesetzt werden, um Screenreadern und Tastaturnutzern eine reibungslose Navigation zu ermöglichen.
+Dieses Projekt war ein wichtiger Schritt, um **Webentwicklung kundenorientiert** zu denken, nicht nur technisch:
 
-📢 Kontakt & Praktikum
-Ich befinde mich aktuell in der Umschulung zum Fachinformatiker Anwendungsentwicklung (Lutz & Grub AG) und suche ein Pflichtpraktikum ab dem 16.01.2026 (Raum Karlsruhe/Baden-Baden).
+### Design & Struktur
+- **UI-Design** mit Fokus auf Lesbarkeit
+- Arbeiten mit **Kontrasten, Abständen und Typografie**
+- Projektkarten-Konzept für klare Darstellung
+- responsive Layout mit flexibler Breite
 
-Interesse an einer Zusammenarbeit? Erstellen Sie gerne ein Issue in diesem Repository mit dem Betreff "Kontaktaufnahme".
+### Webentwicklung
+- Trennung von **HTML, CSS, JavaScript**
+- Strukturierung von Projektinhalten
+- leichte Erweiterbarkeit für neue Projekte
+- Deploy-Vorbereitung (z. B. GitHub Pages)
 
-Hinweis: Das Kontaktformular auf der Webseite ist ein technisches Mockup (Demonstration).
+### Kommunikation
+- **Projektbeschreibungen für HR**
+- Wie erkläre ich Projekte **kurz und verständlich**
+- Reduktion auf das Wesentliche
 
-© 2025 Michael Radawicz
+---
+
+## 🚀 Start
+
+Die Webseite kann **direkt im Browser** geöffnet werden:
+
+1. Dateien entpacken
+2. `index.html` per Doppelklick öffnen
+
+Keine Installation oder Konfiguration nötig.
+
+---
+
+## 📌 Warum dieses Projekt wichtig ist
+
+Das Portfolio ist für mich **mehr als eine Website** – es ist ein Werkzeug, um:
+
+- meine Projekte transparent zu machen,
+- meinen Lernfortschritt sichtbar zu zeigen,
+- und auch **nicht-technische Betrachter** mitzunehmen.
+
+Ich trainiere damit, **komplexe Inhalte einfach zu kommunizieren**, Projekte verständlich aufzubereiten und mich professionell zu präsentieren.
+
+---
+
+## ✍️ Autor
+
+**Michael Radawicz**  
+Umschulung zum Fachinformatiker Anwendungsentwicklung  
+Portfolio-Seite zur Präsentation von Softwareprojekten
