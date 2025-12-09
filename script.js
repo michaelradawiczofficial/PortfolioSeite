@@ -228,3 +228,46 @@ if (typeof motionQuery.addEventListener === "function") {
     setupTiltMotion();
   });
 }
+
+// =====================================
+// Einfache Bildvorschau unter den Projektkarten
+// =====================================
+(function setupImagePreview() {
+  const previewSection = document.getElementById('image-preview');
+  const previewImage = document.getElementById('image-preview-image');
+  const previewClose = document.getElementById('image-preview-close');
+
+  if (!previewSection || !previewImage || !previewClose) return;
+
+  const projectImages = document.querySelectorAll('.project-card .project-image');
+
+  // gemerkte Scrollposition
+  let lastScrollPosition = 0;
+
+  projectImages.forEach(img => {
+    img.addEventListener('click', () => {
+      // Scrollposition merken
+      lastScrollPosition = window.scrollY;
+
+      // Bild einsetzen
+      previewImage.src = img.src;
+      previewImage.alt = img.alt || '';
+
+      // Bereich anzeigen
+      previewSection.classList.remove('hidden');
+
+      // smooth zur Vorschau scrollen
+      previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // schließen
+  previewClose.addEventListener('click', () => {
+    previewSection.classList.add('hidden');
+    previewImage.src = '';
+    previewImage.alt = '';
+
+    // zurück zur alten Scrollposition
+    window.scrollTo({ top: lastScrollPosition, behavior: 'smooth' });
+  });
+})();

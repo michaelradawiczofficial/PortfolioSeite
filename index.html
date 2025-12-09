@@ -239,39 +239,60 @@
           </div>
         </div>
 
+        
 
-        <!-- PROJECTS -->
         <div class="tab-panel" id="tab-projects" role="tabpanel" aria-labelledby="tab-projects-tab" hidden>
+
+          <!-- Bildvorschau ÜBER den Projekt-Cards -->
+          <section id="image-preview" class="image-preview hidden">
+            <div class="image-preview-inner">
+              <button id="image-preview-close" class="image-preview-close" aria-label="Bild ausblenden">
+                &times;
+              </button>
+              <img id="image-preview-image" src="" alt="Projektbild in Großansicht">
+            </div>
+          </section>
+
           <div class="projects-grid">
 
             <!-- Library Management -->
             <article class="glass-card project-card">
-              <div class="project-thumb">Mockup: Bibliotheksverwaltung</div>
-              <h3 class="panel-title">Bibliotheksverwaltung</h3>
-              <p class="project-meta">C#, .NET, WPF, MVVM</p>
+              <img 
+                src="asset/Bilder/Bibliothek.png" 
+                alt="Vorschau der Bibliothek Verwaltung App mit Login (WPF)" 
+                class="project-image"
+              />
+
+              <h3 class="panel-title">Bibliothek Verwaltung – WPF mit Login</h3>
+              <p class="project-meta">C#, WPF, .NET</p>
 
               <div class="badge-row">
-                <span class="badge">Login</span>
-                <span class="badge">CRUD</span>
-                <span class="badge">Filter</span>
+                <span class="badge">Login & Rollen</span>
+                <span class="badge">Medienverwaltung</span>
+                <span class="badge">Desktop-App</span>
               </div>
 
               <p class="project-text">
-                Desktop-Anwendung zur Verwaltung von Medien und Nutzern mit Rollenrechten,
-                Login-System und Such-/Filterfunktionen.
+                Desktop-Anwendung zur Verwaltung einer Bibliothek mit Benutzer-Login, Rollenrechten 
+                und Medienverwaltung. Enthält Suche, Filtermöglichkeiten und persistente Speicherung 
+                der Nutzerdaten und Medien.
               </p>
 
-              <div class="project-links">
-                💻 Code auf GitHub (Issue zur Kontaktaufnahme möglich)
+              <div class="project-links" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="https://github.com/michaelradawiczofficial/BibliothekMitLogin" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+                  <span>💻</span>
+                  <span style="color: #38bdf8; font-weight: 500;">Code auf GitHub ansehen</span>
+                </a>
               </div>
             </article>
+
 
             <!-- Coffee Machine -->
           <article class="glass-card project-card">
               <img 
                 src="asset/Bilder/kaffee.png" 
                 alt="Vorschau der Kaffeemaschine App" 
-                style="width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 0.8rem; object-fit: cover;"
+                class="project-image"
               />
 
               <h3 class="panel-title">JS Kaffeemaschine</h3>
@@ -296,17 +317,18 @@
 
                 <a href="https://github.com/michaelradawiczofficial/Kaffeemaschine.git" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
                   <span>💻</span>
-                  <span style="color: #94a3b8; font-weight: 500;">Code ansehen</span>
+                  <span style="color: #38bdf8; font-weight: 500;">Code auf GitHub ansehen</span>
                 </a>
               </div>
             </article>
+          
 
             <!-- Portfolio -->
             <article class="glass-card project-card">
               <img 
                 src="asset/Bilder/portfolio.png" 
                 alt="Vorschau der Portfolio Website" 
-                style="width: 100%; height: auto; border-radius: 0.5rem; margin-bottom: 0.8rem; object-fit: cover;"
+                class="project-image"
               />
 
               <h3 class="panel-title">Portfolio-Website</h3>
@@ -330,9 +352,20 @@
                 </a>
               </div>
             </article>
+           
 
           </div>
         </div>
+
+            <section id="project-image-preview" class="image-preview hidden">
+              <div class="image-preview-inner">
+                <button id="preview-close" class="image-preview-close" aria-label="Bild ausblenden">
+                  &times;
+                </button>
+                <img id="preview-image" src="" alt="Projektbild in Großansicht">
+              </div>
+            </section>
+
 
 
         <!-- TIMELINE -->
@@ -348,7 +381,7 @@
                   <div class="timeline-content">
                     <div class="timeline-year">seit 08/2023</div>
                     <div class="timeline-text">
-                      Umschulung FIAN bei Lutz &amp; Grub AG, Karlsruhe.
+                      Umschulung FI AE bei Lutz &amp; Grub AG, Karlsruhe.
                       C#, .NET/WPF, JavaScript, SQL, Softwarearchitektur, Scrum, Git &amp; GitHub.
                     </div>
                   </div>
@@ -412,7 +445,7 @@
             <aside class="glass-card cv-card">
               <h3 class="panel-title">Kurzfassung</h3>
               <ul>
-                <li><strong>Profil:</strong> FIAN (Umschulung), Schwerpunkt C#, .NET &amp; JavaScript</li>
+                <li><strong>Profil:</strong> FI AE (Umschulung), Schwerpunkt C#, .NET &amp; JavaScript</li>
                 <li><strong>Projekte:</strong> WPF-Bibliothek, Kaffeemaschine, Portfolio</li>
                 <li><strong>Erfahrung:</strong> 17+ Jahre technische Analyse &amp; Beratung</li>
                 <li><strong>Zertifikate:</strong> Scrum Master (Basis), ITIL, MS900, GPM Basis</li>
@@ -480,6 +513,17 @@
 
       </div>
     </section>
+
+    <!-- Großansicht für Projektbilder -->
+    <section id="image-preview" class="image-preview hidden">
+      <div class="image-preview-inner">
+        <button id="image-preview-close" class="image-preview-close" aria-label="Bild schließen">
+          &times;
+        </button>
+        <img id="image-preview-image" src="" alt="Projektbild" />
+      </div>
+    </section>
+
 
   </main>
 

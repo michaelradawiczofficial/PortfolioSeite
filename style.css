@@ -247,18 +247,33 @@ body {
   position: relative;
 }
 
+/* Hero Titel */
 .hero-title {
-  font-size: clamp(2.1rem, 3.6vw, 2.8rem);
-  margin-bottom: 0.7rem;
+  font-size: 2.4rem;        /* bleibt präsent */
+  font-weight: 700;
   line-height: 1.2;
-  text-align:center;
-  max-width: 24ch; /* Breite begrenzen, Umbruch wird „lesbarer“ */
+  margin-bottom: 1.6rem;
+  letter-spacing: -0.02rem;
 }
 
+/* Hero Subtext */
 .hero-sub {
-  font-size: 1rem;
-  color: #cbd5f5;
-  margin-bottom: 1.3rem;
+  font-size: 1.05rem;       /* kleiner */
+  font-weight: 400;         /* normal, nicht fett */
+  line-height: 1.55;
+  margin-bottom: 1.4rem;
+  color: var(--text-muted); /* dezenter */
+  max-width: 55ch;          /* verbesserte Lesbarkeit */
+}
+
+/* Hero Meta Info */
+.hero-meta {
+  font-size: 0.95rem;       /* noch etwas kleiner */
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--text-muted);
+  opacity: 0.85;            /* visual secondary */
+  max-width: 62ch;
 }
 
 .hero-actions {
@@ -266,11 +281,6 @@ body {
   flex-wrap: wrap;
   gap: 0.8rem;
   margin-bottom: 1.1rem;
-}
-
-.hero-meta {
-  font-size: 0.9rem;
-  color: #e5e7eb;
 }
 
 .hero-photo-wrap {
@@ -282,8 +292,8 @@ body {
 
 /* Avatar-Bild rund & nicht deformiert */
 .avatar {
-  width: 160px;
-  height: 160px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
   background-color: #0f172a;
   display: block;
@@ -298,12 +308,12 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 2px;
+  gap: 4px;
   padding: 0.4rem 1rem;
 }
 
 .hero-name-main {
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
 }
@@ -315,7 +325,6 @@ body {
 }
 
 /* Große Pill im Hero – zweizeilig */
- /* Große Pill im Hero – zweizeilig */
 .hero-pill {
   display: flex;
   flex-direction: column;
@@ -508,6 +517,56 @@ body {
   gap: 1.4rem;
 }
 
+/* Versteckt-Utility */
+.hidden {
+  display: none;
+}
+
+/* Bereich für die Großansicht unter den Projekt-Cards */
+.image-preview {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 1rem 2.5rem;
+}
+
+.image-preview-inner {
+  position: relative;
+  max-width: 960px;
+  width: 100%;
+  border-radius: 1rem;
+  background: radial-gradient(circle at top, rgba(148, 163, 255, 0.15), rgba(15, 23, 42, 0.95));
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.9);
+  padding: 1.5rem;
+}
+
+/* Großes Bild */
+.image-preview img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 0.75rem;
+}
+
+/* Schließen-Button oben rechts im Kasten */
+.image-preview-close {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Optional: leichter Hover-Effekt auf dem Close-Button */
+.image-preview-close:hover {
+  color: #f97316;
+}
+
+
 .project-thumb {
   font-size: 0.8rem;
   color: #cbd5f5;
@@ -519,6 +578,29 @@ body {
   font-size: 0.85rem;
   color: #9ca3af;
   margin-bottom: 0.3rem;
+}
+
+/* Projektbilder in Cards */
+.project-card {
+  overflow: hidden; /* verhindert, dass das gezoomte Bild über die Karte herausragt */
+}
+
+.project-card .project-image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin-bottom: 0.8rem;
+  object-fit: cover;
+  display: block;
+
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: zoom-in;
+}
+
+/* Hover-Zoom-Effekt */
+.project-card:hover .project-image {
+  transform: scale(1.08);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.7);
 }
 
 .badge-row {
@@ -546,6 +628,54 @@ body {
   font-size: 0.86rem;
   color: #38bdf8;
 }
+
+/* Bereich für die Bildvorschau */
+.image-preview {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Eingepackt im inneren Container */
+.image-preview-inner {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+}
+
+/* Großes Bild */
+.image-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+}
+
+/* X-Button */
+.image-preview-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.image-preview-close:hover {
+  color: #f97316;
+}
+
+/* Startstatus: versteckt */
+.hidden {
+  display: none;
+}
+
 
 /* =========================================
    TIMELINE
