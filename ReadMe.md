@@ -65,8 +65,6 @@ Alle grafischen Inhalte befinden sich **separat im Ordner**:
 
 Dort liegen:
 - Projektbilder
-- Icons
-- Grafiken für die Vorschau
 
 Die Webseite **lädt keine externen Daten**, sondern nutzt statische Inhalte, wie für ein Portfolio üblich.  
 Damit ist die Seite **leicht wartbar**, und Projekte lassen sich einfach ergänzen.
