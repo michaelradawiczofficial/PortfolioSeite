@@ -51,7 +51,7 @@ Die Portfolio-Seite basiert auf einer **klaren, nachvollziehbaren Struktur**:
   kleinere Interaktionen und Logik (z. B. Theme oder UI-Effekte)
 
 - **/asset**  
-  Bilder, Icons und Projektgrafiken
+  Bilder
 
 Diese Struktur zeigt, dass ich die **Trennung von Inhalt, Design und Logik** konsequent umsetze.
 
