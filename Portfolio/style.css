@@ -9,88 +9,12 @@
   box-sizing: border-box;
 }
 
-/* =========================================
-   Fonts: Montserrat (UI / Headings)
-========================================= */
-@font-face {
-  font-family: "Montserrat";
-  src: url("asset/MontserratRoboto/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900; /* Variable Font: alle Gewichte */
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("asset/MontserratRoboto/Montserrat/Montserrat-Italic-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* =========================================
-   Fonts: Roboto (Body / Fließtext)
-========================================= */
-@font-face {
-  font-family: "Roboto";
-  src: url("asset/MontserratRoboto/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Roboto";
-  src: url("asset/MontserratRoboto/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-
 /* Grundschrift und Hintergrund */
 html,
 body {
   height: 100%;
-  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 16px;
-
-  /* UI / Headings: Montserrat */
-.hero-title,
-.hero-pill-main,
-.hero-name-main,
-.section-heading,
-.panel-title,
-.tab-button,
-.theme-btn,
-.btn {
-  font-family: "Montserrat", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-/* Lange Fließtexte: dürfen umbrechen, aber ohne sichtbare Silbentrennung */
-.about-card p,
-.project-card p,
-.timeline-text,
-.hero-meta,
-.cv-card p {
-  overflow-wrap: break-word;   /* bricht lange Wörter um, statt aus der Card zu laufen */
-  word-break: break-word;      /* Fallback für ältere Browser */
-}
-
-/* Keine Silbentrennung für Überschriften, Kurzlabels, Skills */
-.hero-title,
-.panel-title,
-.section-heading,
-.skill-group-title,
-.skill-item,
-.tag,
-.badge,
-.hero-pill-main,
-.hero-name-main {
-  hyphens: none;
-}
-
-
 
   /* Overscroll-Fix gegen weiße Ränder bei Trackpad-Scroll */
   overscroll-behavior-y: contain;
@@ -98,40 +22,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 :root {
-  /* Hintergrundbild */
   --bg-image: url("asset/Bilder/waves.png");
-
-  /* === Farben ====================== */
-  /* Primärfarben für Text & Fläche */
-  --c-bg-dark: #020617;        /* Haupt-Hintergrund */
-  --c-text-light: #e5e7eb;     /* Primärer Text (hell) */
-  --c-text-mid: #cbd5f5;       /* Sekundärer Text */
-  --c-text-sub: #9ca3af;       /* Tertiärer Text */
-
-  /* === Schatten ==================== */
-  /* Starker Card-Shadow */
-  --shadow-card: 0 22px 60px rgba(15,23,42,0.85);
-
-  /* Weicher Card/Pill Shadow */
-  --shadow-pill: 0 12px 30px rgba(15,23,42,0.45);
-
-  /* Glow für aktive Buttons */
-  --shadow-active-1: 0 0 6px rgba(94,207,229,0.35);
-  --shadow-active-2: 0 0 4px rgba(52,211,153,0.3);
-
-  /* === Transition Speed ============ */
-  --t-fast: 0.15s ease;
-
-  /* === Gradient ==================== */
-  --grad-active: linear-gradient(135deg, #5ecfe5, #34d399);
 }
 
 /* Seite mit Hintergrundbild */
 body {
-  background-color: var(--c-bg-dark);
-  color: var(--c-text-light);
-
+  color: #e5e7eb;
+  background-color: #020617;
   background-image: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 55%),
     radial-gradient(circle at bottom, rgba(56, 189, 248, 0.1), transparent 55%),
     var(--bg-image);
@@ -208,7 +107,7 @@ body {
 
 .nav-logo-sub {
   font-size: 0.78rem;
-  color: var(--c-text-sub);
+  color: #9ca3af;
 }
 
 .theme-switch {
@@ -219,7 +118,7 @@ body {
 
 .theme-label {
   font-size: 0.85rem;
-  color: var(--c-text-mid);
+  color: #cbd5f5;
 }
 
 .theme-buttons {
@@ -236,7 +135,7 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: rgba(15, 23, 42, 0.85);
-  color: var(--c-text-mid);
+  color: #cbd5f5;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -254,32 +153,19 @@ body {
    Glassmorphism-Komponenten
    ========================================= */
 
-/* =========================================
-   Card Shadows — unified
-   WHY: alle Cards teilen denselben Shadow
-   (kein Pixelunterschied)
-========================================= */
-.glass-card,
-.project-card,
-.profile-card,
-.cv-card,
-.about-card,
-.skill-card {
-  box-shadow: var(--shadow-card);
-}
-
-
 .glass-card {
- position: relative;
+  position: relative;
   border-radius: 1.25rem;
-  padding: 1.4rem 1.6rem 1.6rem; /* vorher z.B. 1.4rem 1.6rem; */
+  padding: 1.4rem 1.6rem;
   background: linear-gradient(
       to bottom right,
       rgba(15, 23, 42, 0.85),
       rgba(30, 64, 175, 0.9)
     );
   border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow: 0 22px 60px rgba(15, 23, 42, 0.85);
   backdrop-filter: blur(22px);
+  opacity: 0.85;
 }
 
 .glass-pill {
@@ -362,16 +248,16 @@ body {
 }
 
 .hero-title {
-  font-family: "Montserrat", "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: clamp(1.5rem, 3.3vw, 2.2rem); /* vorher etwas größer */
-  line-height: 1.18;                     /* minimal enger */
-  max-width: 24ch;
+  font-size: clamp(2.1rem, 3.6vw, 2.8rem);
+  margin-bottom: 0.7rem;
+  line-height: 1.2;
+  text-align:center;
+  max-width: 24ch; /* Breite begrenzen, Umbruch wird „lesbarer“ */
 }
-
 
 .hero-sub {
   font-size: 1rem;
-  color: var(--c-text-mid);
+  color: #cbd5f5;
   margin-bottom: 1.3rem;
 }
 
@@ -491,7 +377,7 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: rgba(15, 23, 42, 0.85);
-  color: var(--c-text-mid);
+  color: #cbd5f5;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease,
     transform 0.15s ease;
@@ -546,6 +432,9 @@ body {
 .tag {
   font-size: 0.78rem;
   padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
 }
 
 /* Kurzprofil */
@@ -606,7 +495,7 @@ body {
 
 .skill-level {
   font-size: 0.78rem;
-  color: var(--c-text-sub);
+  color: #9ca3af;
 }
 
 /* =========================================
@@ -621,14 +510,14 @@ body {
 
 .project-thumb {
   font-size: 0.8rem;
-  color: var(--c-text-mid);
+  color: #cbd5f5;
   margin-bottom: 0.4rem;
   opacity: 0.9;
 }
 
 .project-meta {
   font-size: 0.85rem;
-  color: var(--c-text-sub);
+  color: #9ca3af;
   margin-bottom: 0.3rem;
 }
 
@@ -639,17 +528,12 @@ body {
   margin-bottom: 0.55rem;
 }
 
-.tag
-.badge {
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  background: rgba(15, 23, 42, 0.9);
-}
-
-
 .badge {
   font-size: 0.76rem;
   padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(15, 23, 42, 0.9);
 }
 
 .project-text {
@@ -713,7 +597,7 @@ body {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--c-text-sub);
+  color: #9ca3af;
   margin-bottom: 0.15rem;
 }
 
@@ -746,7 +630,7 @@ body {
 .cv-hint {
   margin-top: 0.7rem;
   font-size: 0.86rem;
-  color: var(--c-text-sub);
+  color: #9ca3af;
 }
 
 /* =========================================
@@ -808,7 +692,7 @@ body {
 
 .form-note {
   font-size: 0.8rem;
-  color: var(--c-text-sub);
+  color: #9ca3af;
   margin-bottom: 0.6rem;
 }
 
@@ -821,7 +705,7 @@ body {
   margin: 0 auto;
   padding: 1rem 1.25rem 2rem 1.25rem;
   font-size: 0.8rem;
-  color: var(--c-text-sub);
+  color: #9ca3af;
 }
 
 /* =========================================
@@ -832,7 +716,9 @@ body {
   .hero-grid,
   .about-layout,
   .timeline-layout,
-  .contact-layout {
+  .contact-layout,
+  .projects-grid,
+  .skills-layout {    /* <--- NEU: Auch Skills untereinander */
     grid-template-columns: 1fr;
   }
 
@@ -1106,8 +992,8 @@ body[data-theme="light"] .theme-btn.active {
   background: linear-gradient(135deg, #5ecfe5, #34d399);
   color: #020617;
   box-shadow:
-    var(--shadow-aktive-1),
-    var(--shadow-aktive-2);
+    0 0 6px rgba(94, 207, 229, 0.35),
+    0 0 4px rgba(52, 211, 153, 0.3);
   font-weight: 600;
 }
 

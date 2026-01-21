@@ -1,16 +1,15 @@
 // =====================================
-// Theme-Wechsel (Dark, Light, Kontrast)
+// 1. Theme-Wechsel (Dark, Light, Kontrast)
 // =====================================
 
 const THEME_STORAGE_KEY = "portfolio-theme";
 
 // Alle Theme-Buttons sammeln
 const themeButtons = document.querySelectorAll("[data-theme-btn]");
-// Body- und HTML-Element (hier wird data-theme gesetzt)
 const body = document.body;
 const htmlElement = document.documentElement;
 
-// verfügbare Themes aus den Buttons ableiten
+// Verfügbare Themes aus den Buttons ableiten
 const availableThemes = new Set(
   Array.from(themeButtons, (btn) => btn.dataset.themeBtn)
 );
@@ -54,8 +53,9 @@ themeButtons.forEach((btn) => {
   });
 });
 
+
 // ================================
-// Tabs: Zustand & ARIA-Handling
+// 2. Tabs: Zustand & ARIA-Handling
 // ================================
 
 const tabList = document.querySelector(".section-tabs");
@@ -141,8 +141,9 @@ if (tabList) {
   });
 }
 
+
 // =====================================
-// Kontaktformular: Mockup klar kennzeichnen
+// 3. Kontaktformular: Mockup
 // =====================================
 
 const contactForm = document.querySelector(".contact-form");
@@ -152,29 +153,26 @@ if (contactForm) {
     const note = contactForm.querySelector(".form-note");
     if (note) {
       note.textContent =
-        "Hinweis: Dieses Formular ist ein Mockup. Für eine echte Anfrage nutzen Sie bitte die Kontaktdaten in meinen Bewerbungsunterlagen oder GitHub-Issues im passenden Repository.";
+        "Hinweis: Dieses Formular ist ein Mockup. Für eine echte Anfrage nutzen Sie bitte GitHub-Issues.";
+      note.style.color = "var(--text-highlight)"; // Visuelles Feedback
     }
   });
 }
 
+
 // =====================================
-// Leichte, richtungsabhängige Bewegung
-// nur für wichtige Elemente
+// 4. Tilt Motion (Maus-Parallaxe)
 // =====================================
 
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function setupTiltMotion() {
-  if (motionQuery.matches) {
-    return;
-  }
+  if (motionQuery.matches) return;
 
-  // Nur wichtige Elemente bewegen (Hero, Projekte, Primary-Buttons, Tabs)
   const tiltTargets = document.querySelectorAll(
-    ".hero-main, .hero-photo-wrap, .project-card, .btn-primary, .tab-button"
+    ".hero-main, .hero-photo-wrap, .project-card, .btn-primary"
   );
-
-  const MAX_OFFSET = 8; // maximale Verschiebung in px
+  const MAX_OFFSET = 8; 
 
   tiltTargets.forEach((el) => {
     let rect = null;
@@ -182,49 +180,101 @@ function setupTiltMotion() {
 
     el.addEventListener("pointerenter", () => {
       rect = el.getBoundingClientRect();
-      el.style.transition =
-        (existingTransition ? existingTransition + ", " : "") +
-        "transform 0.15s ease-out";
+      // Nur Transform animieren, Rest behalten
+      el.style.transition = "transform 0.1s ease-out";
     });
 
     el.addEventListener("pointermove", (event) => {
-      if (!rect) {
-        rect = el.getBoundingClientRect();
-      }
+      if (!rect) rect = el.getBoundingClientRect();
 
       const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
       const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
+      
+      const offsetX = -relativeX * MAX_OFFSET * 0.6;
+      const offsetY = -relativeY * MAX_OFFSET * 0.6;
 
-      // leichte Reduktion der Bewegung
-      const reductionFactor = 0.6;
-
-      const offsetX = -relativeX * MAX_OFFSET * reductionFactor;
-      const offsetY = -relativeY * MAX_OFFSET * reductionFactor;
-
-      el.style.transform = `translate(${offsetX.toFixed(
-        2
-      )}px, ${offsetY.toFixed(2)}px)`;
+      el.style.transform = `translate(${offsetX.toFixed(2)}px, ${offsetY.toFixed(2)}px)`;
     });
 
     el.addEventListener("pointerleave", () => {
       rect = null;
       el.style.transform = "translate(0px, 0px)";
+      // Transition zurücksetzen für smooth reset
+      el.style.transition = existingTransition;
     });
   });
 }
 
 setupTiltMotion();
 
-// Wenn der Nutzer die Systemeinstellung ändert, Bewegung neu bewerten
-if (typeof motionQuery.addEventListener === "function") {
-  motionQuery.addEventListener("change", () => {
-    document
-      .querySelectorAll(
-        ".hero-main, .hero-photo-wrap, .project-card, .btn-primary, .tab-button"
-      )
-      .forEach((el) => {
-        el.style.transform = "translate(0px, 0px)";
-      });
-    setupTiltMotion();
+motionQuery.addEventListener("change", () => {
+  // Reset bei Änderung der Systemeinstellung
+  document.querySelectorAll(".hero-main, .hero-photo-wrap, .project-card").forEach((el) => {
+      el.style.transform = "";
   });
-}
+  if (!motionQuery.matches) setupTiltMotion();
+});
+
+
+// =====================================
+// 5. Bildvorschau (NEU & REFACTORED)
+// =====================================
+
+(function setupImagePreview() {
+  const previewOverlay = document.getElementById('image-preview');
+  const previewImage = document.getElementById('image-preview-image');
+  const previewClose = document.getElementById('image-preview-close');
+
+  if (!previewOverlay || !previewImage || !previewClose) return;
+
+  // Funktion zum Öffnen
+  const openPreview = (src, alt) => {
+    previewImage.src = src;
+    previewImage.alt = alt || '';
+    
+    // Klasse 'hidden' entfernen (falls im HTML vorhanden)
+    previewOverlay.classList.remove('hidden');
+    // Klasse 'visible' hinzufügen (für CSS Opacity Transition)
+    // Kleiner Timeout, damit der Browser den Display-Change registriert
+    requestAnimationFrame(() => {
+      previewOverlay.classList.add('visible');
+    });
+  };
+
+  // Funktion zum Schließen
+  const closePreview = () => {
+    previewOverlay.classList.remove('visible');
+    
+    // Nach Transition (0.3s) 'hidden' wieder setzen und src leeren
+    setTimeout(() => {
+      previewOverlay.classList.add('hidden');
+      previewImage.src = '';
+    }, 300);
+  };
+
+  // Event Delegation für alle Projektbilder
+  // Wir hören auf Klicks im gesamten Dokument, prüfen aber, ob es ein .project-image ist
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('project-image')) {
+      openPreview(e.target.src, e.target.alt);
+    }
+  });
+
+  // Schließen-Button
+  previewClose.addEventListener('click', closePreview);
+
+  // Schließen bei Klick auf den Hintergrund
+  previewOverlay.addEventListener('click', (e) => {
+    if (e.target === previewOverlay) {
+      closePreview();
+    }
+  });
+
+  // Schließen mit ESC-Taste
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && previewOverlay.classList.contains('visible')) {
+      closePreview();
+    }
+  });
+})();
+
