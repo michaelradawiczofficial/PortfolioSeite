@@ -14,7 +14,7 @@
 
   /* Texte */
   --text-main: #e5e7eb;
-  --text-muted: #9ca3af;
+  --text-muted: #e5e7eb;
   --text-highlight: #38bdf8; /* Hellblau */
 
   /* Glassmorphism (Karten) - Transparenz ca. 60-65% */
@@ -486,4 +486,72 @@ body {
 [data-theme="contrast-dark"] .tab-button:focus-visible {
   border-color: #fffb00;
   text-decoration: underline;
+}
+/* =========================================
+   8. MOBILE FIXES (Für schmale Handys)
+   ========================================= */
+
+@media (max-width: 550px) {
+  
+  /* 1. Header aufräumen: Logo und Buttons untereinander */
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  /* Logo zentrieren */
+  .nav-logo {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Text im Logo zentrieren */
+  .nav-logo-text {
+    align-items: center;
+  }
+  
+  /* 2. Schriftgröße der großen Überschrift (H1) reduzieren */
+  .hero-title {
+    font-size: 1.7rem; /* War 2.4rem - viel zu groß für Handy */
+    hyphens: auto;     /* Automatische Silbentrennung */
+    word-wrap: break-word;
+  }
+  
+  /* 3. Die Pill (Umschulung...) flexibler machen */
+  .hero-pill {
+    width: 100%;       /* Volle Breite nutzen */
+    max-width: none;
+    padding: 0.5rem;
+  }
+  
+  .hero-pill-main {
+    font-size: 0.7rem;
+  }
+  
+  .hero-pill-sub {
+    font-size: 0.65rem;
+    white-space: normal; /* Text darf umbrechen */
+  }
+
+  /* 4. Weniger Rand an den Seiten, mehr Platz für Inhalt */
+  .page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 5rem; /* Header ist höher, daher mehr Abstand */
+  }
+  
+  .glass-card {
+    padding: 1.2rem 1rem; /* Innenabstand der Karten verringern */
+  }
+  
+  /* 5. Theme Buttons kleiner machen, damit sie in eine Zeile passen */
+  .theme-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .theme-label {
+    display: none; /* Label "Theme:" ausblenden um Platz zu sparen */
+  }
 }
