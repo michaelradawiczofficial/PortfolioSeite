@@ -55,7 +55,11 @@ themeButtons.forEach((btn) => {
 
 
 // ================================
+<<<<<<< HEAD
 // 2. Tabs: Zustand & ARIA-Handling
+=======
+// Tabs: Zustand & ARIA-Handling
+>>>>>>> 8aaa0cd6c2f1ac6300dbba9cbb2d97da076ee4bb
 // ================================
 
 const tabList = document.querySelector(".section-tabs");
@@ -141,6 +145,7 @@ if (tabList) {
   });
 }
 
+<<<<<<< HEAD
 
 // =====================================
 // 3. Kontaktformular: Mockup
@@ -173,6 +178,42 @@ function setupTiltMotion() {
     ".hero-main, .hero-photo-wrap, .project-card, .btn-primary"
   );
   const MAX_OFFSET = 8; 
+=======
+// =====================================
+// Kontaktformular: Mockup klar kennzeichnen
+// =====================================
+
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const note = contactForm.querySelector(".form-note");
+    if (note) {
+      note.textContent =
+        "Hinweis: Dieses Formular ist ein Mockup. Für eine echte Anfrage nutzen Sie bitte die Kontaktdaten in meinen Bewerbungsunterlagen oder GitHub-Issues im passenden Repository.";
+    }
+  });
+}
+
+// =====================================
+// Leichte, richtungsabhängige Bewegung
+// nur für wichtige Elemente
+// =====================================
+
+const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function setupTiltMotion() {
+  if (motionQuery.matches) {
+    return;
+  }
+
+  // Nur wichtige Elemente bewegen (Hero, Projekte, Primary-Buttons, Tabs)
+  const tiltTargets = document.querySelectorAll(
+    ".hero-main, .hero-photo-wrap, .project-card, .btn-primary, .tab-button"
+  );
+
+  const MAX_OFFSET = 8; // maximale Verschiebung in px
+>>>>>>> 8aaa0cd6c2f1ac6300dbba9cbb2d97da076ee4bb
 
   tiltTargets.forEach((el) => {
     let rect = null;
@@ -180,6 +221,7 @@ function setupTiltMotion() {
 
     el.addEventListener("pointerenter", () => {
       rect = el.getBoundingClientRect();
+<<<<<<< HEAD
       // Nur Transform animieren, Rest behalten
       el.style.transition = "transform 0.1s ease-out";
     });
@@ -194,6 +236,30 @@ function setupTiltMotion() {
       const offsetY = -relativeY * MAX_OFFSET * 0.6;
 
       el.style.transform = `translate(${offsetX.toFixed(2)}px, ${offsetY.toFixed(2)}px)`;
+=======
+      el.style.transition =
+        (existingTransition ? existingTransition + ", " : "") +
+        "transform 0.15s ease-out";
+    });
+
+    el.addEventListener("pointermove", (event) => {
+      if (!rect) {
+        rect = el.getBoundingClientRect();
+      }
+
+      const relativeX = (event.clientX - rect.left) / rect.width - 0.5;
+      const relativeY = (event.clientY - rect.top) / rect.height - 0.5;
+
+      // leichte Reduktion der Bewegung
+      const reductionFactor = 0.6;
+
+      const offsetX = -relativeX * MAX_OFFSET * reductionFactor;
+      const offsetY = -relativeY * MAX_OFFSET * reductionFactor;
+
+      el.style.transform = `translate(${offsetX.toFixed(
+        2
+      )}px, ${offsetY.toFixed(2)}px)`;
+>>>>>>> 8aaa0cd6c2f1ac6300dbba9cbb2d97da076ee4bb
     });
 
     el.addEventListener("pointerleave", () => {
@@ -207,6 +273,7 @@ function setupTiltMotion() {
 
 setupTiltMotion();
 
+<<<<<<< HEAD
 motionQuery.addEventListener("change", () => {
   // Reset bei Änderung der Systemeinstellung
   document.querySelectorAll(".hero-main, .hero-photo-wrap, .project-card").forEach((el) => {
@@ -278,3 +345,61 @@ motionQuery.addEventListener("change", () => {
   });
 })();
 
+=======
+// Wenn der Nutzer die Systemeinstellung ändert, Bewegung neu bewerten
+if (typeof motionQuery.addEventListener === "function") {
+  motionQuery.addEventListener("change", () => {
+    document
+      .querySelectorAll(
+        ".hero-main, .hero-photo-wrap, .project-card, .btn-primary, .tab-button"
+      )
+      .forEach((el) => {
+        el.style.transform = "translate(0px, 0px)";
+      });
+    setupTiltMotion();
+  });
+}
+
+// =====================================
+// Einfache Bildvorschau unter den Projektkarten
+// =====================================
+(function setupImagePreview() {
+  const previewSection = document.getElementById('image-preview');
+  const previewImage = document.getElementById('image-preview-image');
+  const previewClose = document.getElementById('image-preview-close');
+
+  if (!previewSection || !previewImage || !previewClose) return;
+
+  const projectImages = document.querySelectorAll('.project-card .project-image');
+
+  // gemerkte Scrollposition
+  let lastScrollPosition = 0;
+
+  projectImages.forEach(img => {
+    img.addEventListener('click', () => {
+      // Scrollposition merken
+      lastScrollPosition = window.scrollY;
+
+      // Bild einsetzen
+      previewImage.src = img.src;
+      previewImage.alt = img.alt || '';
+
+      // Bereich anzeigen
+      previewSection.classList.remove('hidden');
+
+      // smooth zur Vorschau scrollen
+      previewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // schließen
+  previewClose.addEventListener('click', () => {
+    previewSection.classList.add('hidden');
+    previewImage.src = '';
+    previewImage.alt = '';
+
+    // zurück zur alten Scrollposition
+    window.scrollTo({ top: lastScrollPosition, behavior: 'smooth' });
+  });
+})();
+>>>>>>> 8aaa0cd6c2f1ac6300dbba9cbb2d97da076ee4bb
